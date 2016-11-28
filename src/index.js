@@ -13,12 +13,29 @@ class AxSemanticsClient {
 			token: ''
 		}
 		Object.assign(config, userConfig)
-		this._myax = MyAx(config.myAxBaseUrl, config.token)
-		this._editor = Training(config.trainingBaseUrl, config.token)
+		this._myax = MyAx(AxSemanticsClient.fetch, config.myAxBaseUrl, config.token)
+		this._editor = Training(AxSemanticsClient.fetch, config.trainingBaseUrl, config.token)
 
 		this.collections = this._myax.collections
 		this.documents = this._myax.documents
 		this.me = this._myax.documents
+	}
+
+	static fetch (url, headers, method, body) {
+		let options = {
+			method: method || 'GET',
+			headers,
+			body: JSON.stringify(body)
+		}
+		return window.fetch(url, options).then((response) => {
+			return response.json().then((json) => {
+				if (!response.ok)
+					return Promise.reject({response, json})
+				return Promise.resolve(json)
+			})
+		}).catch((error) => {
+			return Promise.reject(error)
+		})
 	}
 }
 

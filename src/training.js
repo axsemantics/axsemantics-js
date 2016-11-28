@@ -1,6 +1,4 @@
-import base from './_base'
-
-const Training = function (baseUrl, token) {
+const Training = function (fetch, baseUrl, token) {
 	const api = {
 		trainings: {
 			list () {
@@ -61,7 +59,7 @@ const Training = function (baseUrl, token) {
 			'Content-Type': 'application/json',
 			'authorization': `JWT ${token}`
 		}
-		return base.fetch(url.startsWith('http') ? url : baseUrl + url, headers, method, body)
+		return fetch(url.startsWith('http') ? url : baseUrl + url, headers, method, body)
 	}
 
 	return api

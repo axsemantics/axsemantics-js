@@ -1,8 +1,7 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-import base from './_base'
 // TODO add v1 thing api
-const MyAx = function (baseUrl, token) {
+const MyAx = function (fetch, baseUrl, token) {
 	const api = {
 		collections: {
 			list () {
@@ -82,7 +81,7 @@ const MyAx = function (baseUrl, token) {
 			'Content-Type': 'application/json',
 			'authorization': `JWT ${token}`
 		}
-		return base.fetch(url.startsWith('http') ? url : baseUrl + url, headers, method, body)
+		return fetch(url.startsWith('http') ? url : baseUrl + url, headers, method, body)
 	}
 	return api
 }

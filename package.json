@@ -1,8 +1,10 @@
 {
   "name": "axsemantics",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "AX-Semantics API Client",
-  "main": "index.js",
+  "main": "dist/bundle.js",
+  "jsnext:main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js"
   },
