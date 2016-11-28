@@ -1,6 +1,6 @@
 {
   "name": "axsemantics",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "AX-Semantics API Client",
   "main": "dist/axsemantics.js",
   "jsnext:main": "dist/axsemantics.es.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "build:cjs": "rollup -c rollup.config.cjs.js",
     "build:es": "rollup -c rollup.config.es.js",
-    "build": "npm run build:cjs && npm run build:es"
+    "build:iife": "rollup -c rollup.config.iife.js",
+    "build": "npm run build:cjs && npm run build:es && npm run build:iife"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "babel-plugin-external-helpers": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.7.5",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2015-rollup": "^1.2.0",
     "eslint": "^3.9.0",
     "eslint-config-standard": "^6.0.0",
     "eslint-friendly-formatter": "^2.0.6",
@@ -34,6 +36,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.0",
     "rollup": "^0.36.4",
-    "rollup-plugin-babel": "^2.6.1"
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-node-builtins": "^2.0.0"
   }
 }
