@@ -10,11 +10,12 @@ class AxSemanticsClient {
 		const config = {
 			myAxBaseUrl: 'https://api.ax-semantics.com/',
 			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
-			token: ''
+			token: '',
+			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
 		}
 		Object.assign(config, userConfig)
-		this._myax = MyAx(AxSemanticsClient.fetch, config.myAxBaseUrl, config.token)
-		this._editor = Training(AxSemanticsClient.fetch, config.trainingBaseUrl, config.token)
+		this._myax = MyAx(config.fetch, config.myAxBaseUrl, config.token)
+		this._editor = Training(config.fetch, config.trainingBaseUrl, config.token)
 
 		this.collections = this._myax.collections
 		this.documents = this._myax.documents
