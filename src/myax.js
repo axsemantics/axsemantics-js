@@ -59,6 +59,9 @@ const MyAx = function (fetch, baseUrl, token) {
 			},
 			generate (id) {
 				return api.fetch(`v2/documents/${id}/generate-content/?highprio`, 'POST')
+			},
+			delete (documentId) {
+				return api.fetch(`v2/documents/${documentId}/`, 'DELETE')
 			}
 		},
 		contentProjects: {
