@@ -29,6 +29,8 @@ class AxSemanticsClient {
 			body: JSON.stringify(body)
 		}
 		return window.fetch(url, options).then((response) => {
+			if (response.status === 204) // no content to parse
+				return Promise.resolve()
 			return response.json().then((json) => {
 				if (!response.ok)
 					return Promise.reject({response, json})
