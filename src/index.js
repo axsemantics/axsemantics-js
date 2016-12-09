@@ -18,7 +18,7 @@ class AxSemanticsClient {
 		Object.assign(config, userConfig)
 		this._myax = MyAx(config.fetch, config.myAxBaseUrl, config.token)
 		this._editor = Training(config.fetch, config.trainingBaseUrl, config.token)
-		this._idm = IDM(config.fetch, config.trainingBaseUrl, config.token)
+		this._idm = IDM(config.fetch, config.idmBaseUrl, config.token)
 
 		this.collections = this._myax.collections
 		this.documents = this._myax.documents
