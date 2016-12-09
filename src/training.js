@@ -1,8 +1,8 @@
 const Training = function (fetch, baseUrl, token) {
 	const api = {
 		trainings: {
-			list () {
-				return api.fetch(`trainings/?fields=id,name&container_mode=True`)
+			list (fields = 'id,name') {
+				return api.fetch(`trainings/?fields=${fields}&container_mode=True`)
 			},
 			get (id) {
 				return api.fetch(`trainings/${id}/`)
