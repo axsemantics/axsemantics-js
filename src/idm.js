@@ -3,7 +3,7 @@ const IDM = function (fetch, baseUrl, token) {
 	const api = {
 		chargebee: {
 			portal () {
-				return api.fetch(`v1/chargebee/portal/`, 'POST')
+				return api.fetch(`chargebee/portal/`, 'POST')
 			}
 		}
 	}
