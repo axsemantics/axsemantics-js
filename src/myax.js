@@ -13,14 +13,9 @@ const MyAx = function (fetch, baseUrl, token) {
 			get (id) {
 				return api.fetch(`v2/collections/${id}/`)
 			},
-			create (name, training_id, language) {
-				return api.fetch(`v2/collections/`, 'POST', {
-					language,
-					training_id,
-					name,
-					training_tag: 'draft', // TODO
-					license_holder: 'aexea-developers' // TODO
-				})
+			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
+			create (collection) {
+				return api.fetch(`v2/collections/`, 'POST', collection)
 			},
 			delete (id) {
 				return api.fetch(`v2/collections/${id}/`, 'DELETE')
