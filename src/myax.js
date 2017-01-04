@@ -37,12 +37,15 @@ const MyAx = function (fetch, baseUrl, token) {
 			}
 		},
 		// https://github.com/aexeagmbh/myax/blob/master/myax/document/processing_states.py
+		// optional search and processingState ['none', 'requested', 'generated', 'delivered', 'failed']
 		documents: {
-			listForCollection (collectionId, search) {
-				const qs = querystring.stringify({
-					collection: collectionId,
-					search: search
-				})
+			listForCollection (collectionId, search, processingState) {
+				const query = {
+					collection: collectionId
+				}
+				if (search) query.search = search
+				if (processingState) query.processing_state = processingState
+				const qs = querystring.stringify(query)
 				return api.fetch(`v2/documents/?${qs}`)
 			},
 			// blob has to contain 'name' and 'uid'
