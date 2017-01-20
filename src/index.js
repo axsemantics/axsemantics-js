@@ -1,6 +1,7 @@
 import Training from './training'
 import MyAx from './myax'
 import IDM from './idm'
+import Lexicon from './lexicon'
 
 // Why use class and not just a constructor function? Because we can, and it is a tad cleaner.
 //
@@ -11,6 +12,7 @@ class AxSemanticsClient {
 		const config = {
 			myAxBaseUrl: 'https://api.ax-semantics.com/',
 			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
+			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/lexica/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
 			token: '',
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
@@ -19,7 +21,7 @@ class AxSemanticsClient {
 		this._myax = MyAx(config.fetch, config.myAxBaseUrl, config.token)
 		this._editor = Training(config.fetch, config.trainingBaseUrl, config.token)
 		this._idm = IDM(config.fetch, config.idmBaseUrl, config.token)
-
+		this._lexicon = Lexicon(config.fetch, config.lexiconBaseUrl, config.token)
 		this.collections = this._myax.collections
 		this.documents = this._myax.documents
 		this.me = this._myax.documents
