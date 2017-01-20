@@ -12,7 +12,7 @@ class AxSemanticsClient {
 		const config = {
 			myAxBaseUrl: 'https://api.ax-semantics.com/',
 			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
-			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/lexica/',
+			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
 			token: '',
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally

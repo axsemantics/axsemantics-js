@@ -13,6 +13,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			getLexiconEntry (id) {
 				return api.fetch(`lexica/${id}/`)
+			},
+			patch (id, entryJson) {
+				return api.fetch(`lexica/${id}/`, 'PATCH', entryJson)
 			}
 		}
 	}
