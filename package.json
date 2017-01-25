@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/axsemantics/axsemantics-js.git"
   },
-  "author": "",
+  "author": "rashfael <sebastian.gepperth@ax-semantics.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/axsemantics/axsemantics-js/issues"

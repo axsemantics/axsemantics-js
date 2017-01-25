@@ -29,6 +29,13 @@ const MyAx = function (fetch, baseUrl, token) {
 			},
 			generateAll (id) {
 				return api.fetch(`v2/collections/${id}/generate-content/`, 'POST')
+			},
+			generateFiltered (id, search, processingState) {
+				const query = {}
+				if (search) query.search = search
+				if (processingState) query.processing_state = processingState
+				const qs = querystring.stringify(query)
+				return api.fetch(`v2/collections/${id}/generate-content/?${qs}`, 'POST')
 			}
 		},
 		me: {
