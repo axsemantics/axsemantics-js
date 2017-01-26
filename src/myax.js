@@ -25,6 +25,8 @@ const MyAx = function (fetch, baseUrl, token) {
 					name: collection.name,
 					language: collection.language,
 					uses_published_training: collection.uses_published_training,
+					webhook_secret: collection.webhook_secret,
+					webhook_url: collection.webhook_url,
 				})
 			},
 			generateAll (id) {
