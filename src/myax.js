@@ -21,7 +21,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/collections/${id}/`, 'DELETE')
 			},
 			save (collection) {
-				api.fetch(`v2/collections/${collection.id}/`, 'PATCH', {
+				return api.fetch(`v2/collections/${collection.id}/`, 'PATCH', {
 					name: collection.name,
 					language: collection.language,
 					uses_published_training: collection.uses_published_training,
