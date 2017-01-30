@@ -10,9 +10,10 @@ const Training = function (fetch, baseUrl, token) {
 			properties (id) {
 				return api.fetch(`properties/?training=${id}`)
 			},
-			create (name) {
+			create (name, license_holder) {
 				return api.fetch(`trainings/`, 'POST', {
 					name,
+					license_holder,
 					container_mode: true
 				})
 			},
