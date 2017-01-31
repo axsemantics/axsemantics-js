@@ -2,7 +2,7 @@
 const lexicon = function (fetch, baseUrl, token) {
 	const api = {
 		entries: {
-			ListfromLexicon (trainingId, language, page) {
+			listfromLexicon (trainingId, language, page) {
 				return api.fetch(`lexica/?page=${page}&language=${language}&training_id=${trainingId}`)
 			},
 			create (lexiconEntry) {
