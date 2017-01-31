@@ -1,12 +1,12 @@
 
 const lexicon = function (fetch, baseUrl, token) {
 	const api = {
-		lexica: {
-			listFromTraining (page, language, trainingId) {
+		entries: {
+			ListfromLexicon (trainingId, language, page) {
 				return api.fetch(`lexica/?page=${page}&language=${language}&training_id=${trainingId}`)
 			},
-			create (entryJson) {
-				return api.fetch('lexica/', 'POST', entryJson)
+			create (lexiconEntry) {
+				return api.fetch('lexica/', 'POST', lexiconEntry)
 			},
 			delete (id) {
 				return api.fetch(`lexica/${id}/`, 'DELETE')
@@ -14,8 +14,8 @@ const lexicon = function (fetch, baseUrl, token) {
 			getLexiconEntry (id) {
 				return api.fetch(`lexica/${id}/`)
 			},
-			patch (id, entryJson) {
-				return api.fetch(`lexica/${id}/`, 'PATCH', entryJson)
+			patch (id, lexiconEntry) {
+				return api.fetch(`lexica/${id}/`, 'PATCH', lexiconEntry)
 			}
 		}
 	}
