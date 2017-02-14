@@ -11,6 +11,11 @@ const IDM = function (fetch, baseUrl, token) {
 			chargeBeePortal (group) {
 				return api.fetch(`groups/${group}/portal/`, 'POST')
 			}
+		},
+		user: {
+			get () {
+				return api.fetch(`user/`)
+			}
 		}
 	}
 
