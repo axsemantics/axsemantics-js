@@ -16,6 +16,12 @@ const IDM = function (fetch, baseUrl, token) {
 			get () {
 				return api.fetch(`user/`)
 			}
+		},
+		tokenExchange (refresh_token) {
+			const headers = {
+				'Content-Type': 'application/json',
+			}
+			return fetch(baseUrl + 'token-exchange', headers, 'POST', {refresh_token})
 		}
 	}
 
