@@ -1,17 +1,30 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-// TODO add v1 thing api
+import cleanObj from 'lodash/pickBy'
+
+const fieldsFromOptions = function (options) {
+	return options.fields instanceof Array ? options.fields.join(',') : options.fields
+}
+
 const MyAx = function (fetch, baseUrl, token) {
 	const api = {
 		collections: {
-			list () {
-				return api.fetch(`v2/collections/?page_size=50`)
+			// options = {page_size: 50, fields}
+			list (training_id, options = {}) {
+				const query = {
+					training_id,
+					page_size: options.pageSize || 50,
+					fields: fieldsFromOptions(options)
+				}
+				const qs = querystring.stringify(cleanObj(query))
+				return api.fetch(`v2/collections/?${qs}`)
 			},
-			listFromTraining (trainingId) {
-				return api.fetch(`v2/collections/?training_id=${trainingId}&page_size=50`)
-			},
-			get (id) {
-				return api.fetch(`v2/collections/${id}/`)
+			get (id, options = {}) {
+				const query = {
+					fields: fieldsFromOptions(options)
+				}
+				const qs = querystring.stringify(cleanObj(query))
+				return api.fetch(`v2/collections/${id}/?${qs}`)
 			},
 			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
 			create (collection) {
@@ -48,21 +61,29 @@ const MyAx = function (fetch, baseUrl, token) {
 		// https://github.com/aexeagmbh/myax/blob/master/myax/document/processing_states.py
 		// optional search and processingState ['none', 'requested', 'generated', 'delivered', 'failed']
 		documents: {
-			listForCollection (collectionId, search, processingState) {
+			// filters = {search, processingState}
+			// options = {fields}
+			list (collectionId, filters = {}, options = {}) {
 				const query = {
-					collection: collectionId
+					collection: collectionId,
+					search: filters.search,
+					processing_state: filters.processingState,
+					fields: options.fields
 				}
-				if (search) query.search = search
-				if (processingState) query.processing_state = processingState
-				const qs = querystring.stringify(query)
+				const qs = querystring.stringify(cleanObj(query))
 				return api.fetch(`v2/documents/?${qs}`)
 			},
 			// blob has to contain 'name' and 'uid'
 			create (collectionId, blob) {
 				return api.fetch(`v2/collections/${collectionId}/document/`, 'POST', blob)
 			},
-			get (id) {
-				return api.fetch(`v2/documents/${id}/`)
+			// options = {fields}
+			get (id, options = {}) {
+				const query = {
+					fields: fieldsFromOptions(options)
+				}
+				const qs = querystring.stringify(cleanObj(query))
+				return api.fetch(`v2/documents/${id}/?${qs}`)
 			},
 			generate (id) {
 				return api.fetch(`v2/documents/${id}/generate-content/?highprio`, 'POST')
