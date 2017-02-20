@@ -1,9 +1,12 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-import cleanObj from 'lodash/pickBy'
 
 const fieldsFromOptions = function (options) {
 	return options.fields instanceof Array ? options.fields.join(',') : options.fields
+}
+
+const cleanQuery = function (object) {
+	Object.keys(object).forEach(key => !object[key] && delete object[key])
 }
 
 const MyAx = function (fetch, baseUrl, token) {
@@ -16,14 +19,14 @@ const MyAx = function (fetch, baseUrl, token) {
 					page_size: options.pageSize || 50,
 					fields: fieldsFromOptions(options)
 				}
-				const qs = querystring.stringify(cleanObj(query))
+				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/?${qs}`)
 			},
 			get (id, options = {}) {
 				const query = {
 					fields: fieldsFromOptions(options)
 				}
-				const qs = querystring.stringify(cleanObj(query))
+				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/${id}/?${qs}`)
 			},
 			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
@@ -70,7 +73,7 @@ const MyAx = function (fetch, baseUrl, token) {
 					processing_state: filters.processingState,
 					fields: options.fields
 				}
-				const qs = querystring.stringify(cleanObj(query))
+				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/documents/?${qs}`)
 			},
 			// blob has to contain 'name' and 'uid'
@@ -82,7 +85,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				const query = {
 					fields: fieldsFromOptions(options)
 				}
-				const qs = querystring.stringify(cleanObj(query))
+				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/documents/${id}/?${qs}`)
 			},
 			generate (id) {
