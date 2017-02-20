@@ -7,6 +7,7 @@ const fieldsFromOptions = function (options) {
 
 const cleanQuery = function (object) {
 	Object.keys(object).forEach(key => !object[key] && delete object[key])
+	return object
 }
 
 const MyAx = function (fetch, baseUrl, token) {
