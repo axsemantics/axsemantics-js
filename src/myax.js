@@ -96,19 +96,18 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/documents/${documentId}/`, 'DELETE')
 			}
 		},
-		contentProjects: {
-			list () {
-				return api.fetch(`v2/content-project/`)
+		exports: {
+			list (collectionId) {
+				const query = {
+					collection: collectionId
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`v2/story-exports/?${qs}`)
 			},
 			get (id) {
-				return api.fetch(`v2/content-project/${id}/`)
+				return api.fetch(`v2/story-exports/${id}/`)
 			},
-		},
-		things: {
-			list (contentProjectId, search) {
-				return api.fetch(`v2/content-project/${contentProjectId}/thing/`)
-			}
-		},
+		}
 	}
 
 	api.fetch = function (url, method, body) {
