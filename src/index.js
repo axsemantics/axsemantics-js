@@ -29,8 +29,8 @@ class AxSemanticsClient {
 		this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl))
 	}
 
-	static fetch (baseUrl, url, method, body) {
-		const headers = {
+	static fetch (baseUrl, url, method, body, userHeaders) {
+		const headers = userHeaders || {
 			'Content-Type': 'application/json',
 			'authorization': `JWT ${this.idToken}`
 		}

@@ -21,7 +21,7 @@ const IDM = function (fetch, baseUrl, token) {
 			const headers = {
 				'Content-Type': 'application/json',
 			}
-			return fetch(baseUrl + 'token-exchange/', headers, 'POST', {refresh_token})
+			return fetch(baseUrl + 'token-exchange/', 'POST', {refresh_token}, headers)
 		}
 	}
 
