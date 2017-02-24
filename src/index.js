@@ -2,6 +2,7 @@ import Training from './training'
 import MyAx from './myax'
 import IDM from './idm'
 import Lexicon from './lexicon'
+import BulkUpload from './bulk-upload'
 
 // Why use class and not just a constructor function? Because we can, and it is a tad cleaner.
 //
@@ -14,6 +15,7 @@ class AxSemanticsClient {
 			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
 			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
+			bulkUploadBaseUrl: 'https://bulk-api.ax-semantics.com/v1/',
 			token: '',
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
 		}
@@ -22,6 +24,7 @@ class AxSemanticsClient {
 		this._editor = Training(config.fetch, config.trainingBaseUrl, config.token)
 		this._idm = IDM(config.fetch, config.idmBaseUrl, config.token)
 		this._lexicon = Lexicon(config.fetch, config.lexiconBaseUrl, config.token)
+		this._bulkUpload = BulkUpload(config.fetch, config.bulkUploadBaseUrl, config.token)
 		this.collections = this._myax.collections
 		this.documents = this._myax.documents
 		this.me = this._myax.documents
