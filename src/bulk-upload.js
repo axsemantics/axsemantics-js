@@ -8,13 +8,7 @@ const BulkUpload = function (fetch, baseUrl, token) {
 		}
 	}
 
-	api.fetch = function (url, method, body) {
-		const headers = {
-			'Content-Type': 'application/json',
-			'authorization': `JWT ${token}`
-		}
-		return fetch(url.startsWith('http') ? url : baseUrl + url, headers, method, body)
-	}
+	api.fetch = fetch
 	return api
 }
 

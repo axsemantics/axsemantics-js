@@ -16,27 +16,30 @@ class AxSemanticsClient {
 			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
 			bulkUploadBaseUrl: 'https://bulk-api.ax-semantics.com/v1/',
-			token: '',
+			idToken: '',
+			refreshToken: null,
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
 		}
 		Object.assign(config, userConfig)
-		this._myax = MyAx(config.fetch, config.myAxBaseUrl, config.token)
-		this._editor = Training(config.fetch, config.trainingBaseUrl, config.token)
-		this._idm = IDM(config.fetch, config.idmBaseUrl, config.token)
-		this._lexicon = Lexicon(config.fetch, config.lexiconBaseUrl, config.token)
-		this._bulkUpload = BulkUpload(config.fetch, config.bulkUploadBaseUrl, config.token)
-		this.collections = this._myax.collections
-		this.documents = this._myax.documents
-		this.me = this._myax.documents
+		this.idToken = config.idToken
+		this._myax = MyAx(config.fetch.bind(this, config.myAxBaseUrl))
+		this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
+		this._idm = IDM(config.fetch.bind(this, config.idmBaseUrl))
+		this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
+		this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl))
 	}
 
-	static fetch (url, headers, method, body) {
-		let options = {
+	static fetch (baseUrl, url, method, body) {
+		const headers = {
+			'Content-Type': 'application/json',
+			'authorization': `JWT ${this.idToken}`
+		}
+		const options = {
 			method: method || 'GET',
 			headers,
 			body: JSON.stringify(body)
 		}
-		return window.fetch(url, options).then((response) => {
+		return window.fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
 			if (response.status === 204) // no content to parse
 				return Promise.resolve()
 			return response.json().then((json) => {
