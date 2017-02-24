@@ -1,5 +1,118 @@
+/* eslint camelcase: "off" */
+
 const Training = function (fetch, baseUrl, token) {
 	const api = {
+		asoRequests: {
+			list () {},
+			get (id) {}
+		},
+		languages: {
+			list () {
+				return api.fetch(`languages/`)
+			},
+			listAll () {
+				return api.fetch(`languages/all/`)
+			}
+		},
+		lookupTables: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		lookupValues: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		lookups: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		properties: {
+			list () {},
+			get (id) {
+				return api.fetch(`properties/${id}/`)
+			},
+			create () {},
+			createGroup () {},
+			duplicate (id) {},
+			delete (id) {},
+			update () {},
+			vocabularies (id) {
+				return api.fetch(`properties/${id}/vocabularies/`)
+			}
+		},
+		sentenceGroups: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		sentenceVariantContainers: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+			// a boatload of ops
+		},
+		sentenceVariantSynonymValues: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		sentenceVariantSynonyms: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		sentenceVariantTags: {
+			list () {},
+			get (id) {}
+		},
+		sentenceVariants: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+			// more ops
+		},
+		sentences: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+			// more ops
+		},
+		sourceTexts: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+		},
+		storyTypes: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
+			// DUP
+		},
 		trainings: {
 			list (fields = 'id,name') {
 				return api.fetch(`trainings/?fields=${fields}&container_mode=True`)
@@ -23,21 +136,12 @@ const Training = function (fetch, baseUrl, token) {
 				})
 			}
 		},
-		properties: {
-			get (id) {
-				return api.fetch(`properties/${id}/`)
-			},
-			vocabularies (id) {
-				return api.fetch(`properties/${id}/vocabularies/`)
-			}
-		},
-		languages: {
-			list () {
-				return api.fetch(`languages/`)
-			},
-			listAll () {
-				return api.fetch(`languages/all/`)
-			}
+		vocabularies: {
+			list () {},
+			get (id) {},
+			create () {},
+			delete (id) {},
+			update () {}
 		}
 	}
 
