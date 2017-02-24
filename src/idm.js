@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-const IDM = function (fetch, baseUrl, token) {
+const IDM = function (fetch) {
 	const api = {
 		groups: {
 			list () {
@@ -21,7 +21,7 @@ const IDM = function (fetch, baseUrl, token) {
 			const headers = {
 				'Content-Type': 'application/json',
 			}
-			return fetch(baseUrl + 'token-exchange/', 'POST', {refresh_token}, headers)
+			return fetch('token-exchange/', 'POST', {refresh_token}, headers)
 		}
 	}
 
