@@ -1,13 +1,9 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
+import { cleanQuery } from './utils'
 
 const fieldsFromOptions = function (options) {
 	return options.fields instanceof Array ? options.fields.join(',') : options.fields
-}
-
-const cleanQuery = function (object) {
-	Object.keys(object).forEach(key => !object[key] && delete object[key])
-	return object
 }
 
 const MyAx = function (fetch, baseUrl, token) {

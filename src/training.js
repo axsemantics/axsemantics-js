@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+import querystring from 'querystring'
+import { cleanQuery } from './utils'
 
 const Training = function (fetch, baseUrl, token) {
 	const api = {
@@ -36,17 +38,37 @@ const Training = function (fetch, baseUrl, token) {
 			update () {}
 		},
 		properties: {
-			list () {},
+			list (trainingId, filters = {}, options = {}) {
+				const query = {
+					training: trainingId,
+					search: filters.search,
+					page: options.page
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`properties/?${qs}`)
+			},
 			get (id) {
 				return api.fetch(`properties/${id}/`)
 			},
-			create () {},
+			create (property) {
+				return api.fetch(`properties/`, 'POST', property) // {training,name, truth_expression, mapping_expression, comment}
+			},
 			createGroup () {},
-			duplicate (id) {},
-			delete (id) {},
-			update () {},
-			vocabularies (id) {
-				return api.fetch(`properties/${id}/vocabularies/`)
+			duplicate (id, name) {
+				return api.fetch(`properties/${id}/duplicate/`, 'POST', {name})
+			},
+			delete (id) {
+				return api.fetch(`properties/${id}/`, 'DELETE')
+			},
+			update (property) {
+				const {id, training, name, truth_expression, mapping_expression, comment} = property
+				return api.fetch(`properties/${id}/`, 'PATCH', {
+					training,
+					name,
+					truth_expression,
+					mapping_expression,
+					comment
+				})
 			}
 		},
 		sentenceGroups: {
@@ -109,9 +131,9 @@ const Training = function (fetch, baseUrl, token) {
 			list () {},
 			get (id) {},
 			create () {},
+			duplicate (id) {},
 			delete (id) {},
 			update () {}
-			// DUP
 		},
 		trainings: {
 			list (fields = 'id,name') {
