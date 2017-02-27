@@ -61,9 +61,8 @@ const Training = function (fetch, baseUrl, token) {
 				return api.fetch(`properties/${id}/`, 'DELETE')
 			},
 			update (property) {
-				const {id, training, name, truth_expression, mapping_expression, comment} = property
+				const {id, name, truth_expression, mapping_expression, comment} = property
 				return api.fetch(`properties/${id}/`, 'PATCH', {
-					training,
 					name,
 					truth_expression,
 					mapping_expression,
@@ -79,11 +78,19 @@ const Training = function (fetch, baseUrl, token) {
 			update () {}
 		},
 		sentenceVariantContainers: {
-			list () {},
-			get (id) {},
-			create () {},
+			list (sentenceVariantId) {
+				return api.fetch(`sentence-variant-containers/?sentence_variant=${sentenceVariantId}`)
+			},
+			get (id) {
+				return api.fetch(`sentence-variant-containers/${id}/`)
+			},
+			create (container) {
+				return api.fetch(`sentence-variant-containers/`, 'POST', container)
+			},
 			delete (id) {},
-			update () {}
+			update (container) {
+				return api.fetch(`sentence-variant-containers/${container.id}/`, 'PATCH', container)
+			}
 			// a boatload of ops
 		},
 		sentenceVariantSynonymValues: {
@@ -105,20 +112,74 @@ const Training = function (fetch, baseUrl, token) {
 			get (id) {}
 		},
 		sentenceVariants: {
-			list () {},
-			get (id) {},
-			create () {},
-			delete (id) {},
-			update () {}
+			list (sentenceId, options = {}) {
+				const query = {
+					sentence: sentenceId,
+					page: options.page
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`sentence-variants/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`sentence-variants/${id}/`)
+			},
+			create (sentenceVariant) {
+				return api.fetch(`sentence-variants/`, 'POST', sentenceVariant) // {sentence, text, language, sample_output, property_output, tags: []}
+			},
+			duplicate (id) {
+				return api.fetch(`sentence-variants/${id}/duplicate/`, 'POST')
+			},
+			delete (id) {
+				return api.fetch(`sentence-variants/${id}/`, 'DELETE')
+			},
+			update (sentenceVariant) {
+				const {id, text, language, sample_output, property_output, tags} = sentenceVariant
+				return api.fetch(`sentence-variants/${id}/`, 'PATCH', {
+					text,
+					language,
+					sample_output,
+					property_output,
+					tags
+				})
+			},
 			// more ops
 		},
 		sentences: {
-			list () {},
-			get (id) {},
-			create () {},
-			delete (id) {},
-			update () {}
-			// more ops
+			list (trainingId, options = {}) {
+				const query = {
+					training: trainingId,
+					page: options.page
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`sentences/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`sentences/${id}/`)
+			},
+			create (sentence) {
+				return api.fetch(`sentences/`, 'POST', sentence) // {training, name, style, comment, command, obligatory, auto_triggered, triggers}
+			},
+			duplicate (id, name) {
+				return api.fetch(`sentences/${id}/duplicate/`, 'POST', {name})
+			},
+			delete (id) {
+				return api.fetch(`sentences/${id}/`, 'DELETE')
+			},
+			update (sentence) {
+				const {id, name, style, comment, command, obligatory, auto_triggered, triggers} = sentence
+				return api.fetch(`sentences/${id}/`, 'PATCH', {
+					name,
+					style,
+					comment,
+					command,
+					obligatory,
+					auto_triggered,
+					triggers
+				})
+			},
+			validateVariants (id) {
+				return api.fetch(`sentences/${id}/validate-sentence-variants/`, 'POST')
+			}
 		},
 		sourceTexts: {
 			list () {},
