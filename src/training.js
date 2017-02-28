@@ -123,8 +123,10 @@ const Training = function (fetch, baseUrl, token) {
 			get (id) {
 				return api.fetch(`sentence-variants/${id}/`)
 			},
+			// sentenceVariant: {sentence, text, language, sample_output, property_output, tags: []}
+			// sentence is name of sentence, not id
 			create (sentenceVariant) {
-				return api.fetch(`sentence-variants/`, 'POST', sentenceVariant) // {sentence, text, language, sample_output, property_output, tags: []}
+				return api.fetch(`sentence-variants/`, 'POST', sentenceVariant) 
 			},
 			duplicate (id) {
 				return api.fetch(`sentence-variants/${id}/duplicate/`, 'POST')
