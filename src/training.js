@@ -90,8 +90,35 @@ const Training = function (fetch, baseUrl, token) {
 			delete (id) {},
 			update (container) {
 				return api.fetch(`sentence-variant-containers/${container.id}/`, 'PATCH', container)
+			},
+			split (id, start, end) {
+				return api.fetch(`sentence-variant-containers/${id}/split/`, 'POST', {start, end})
+			},
+			toGrammar (id) {
+				return api.fetch(`sentence-variant-containers/${id}/to-grammar/`, 'POST')
+			},
+			toGroup (id, propertyId, groupMethod) {
+				return api.fetch(`sentence-variant-containers/${id}/to-group/`, 'POST', {
+					containerProperty: propertyId,
+					group_method: groupMethod
+				})
+			},
+			toPhrase (id, propertyId) {
+				return api.fetch(`sentence-variant-containers/${id}/to-phrase/`, 'POST', {
+					containerProperty: propertyId
+				})
+			},
+			toPlain (id) {
+				return api.fetch(`sentence-variant-containers/${id}/to-plain/`, 'POST')
+			},
+			toText (id) {
+				return api.fetch(`sentence-variant-containers/${id}/to-text/`, 'POST')
+			},
+			toValue (id, propertyId) {
+				return api.fetch(`sentence-variant-containers/${id}/to-value/`, 'POST', {
+					containerProperty: propertyId
+				})
 			}
-			// a boatload of ops
 		},
 		sentenceVariantSynonymValues: {
 			list () {},
