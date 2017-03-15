@@ -248,6 +248,33 @@ const Training = function (fetch, baseUrl, token) {
 				})
 			}
 		},
+		// https://github.com/aexeagmbh/rincewind/issues/317#issuecomment-286102626
+		validationData: {
+			list (trainingId) {
+				return api.fetch(`validation-data/?training=${trainingId}`)
+			},
+			get (id) {
+				return api.fetch(`validation-data/${id}/`)
+			},
+			create (validationData) {
+				// {training, name, uid, data}
+				return api.fetch(`validation-data/`, 'POST', validationData)
+			},
+			update (validationData) {
+				const {id, name, uid, data} = validationData
+				return api.fetch(`validation-data/${id}/`, 'PATCH', {
+					name,
+					uid,
+					data
+				})
+			},
+			select (id, language) {
+				return api.fetch(`validation-data/${id}/select`, 'PUT', {language})
+			},
+			selectDefault (id, language) {
+				return api.fetch(`validation-data/${id}/select-global`, 'PUT', {language})
+			}
+		},
 		vocabularies: {
 			list () {},
 			get (id) {},
