@@ -40,7 +40,7 @@ class AxSemanticsClient {
 			body: JSON.stringify(body)
 		}
 		return window.fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
-			if (response.status === 202 || response.status === 204) // no content to parse
+			if (response.status === 204) // no content to parse
 				return Promise.resolve()
 			return response.json().then((json) => {
 				if (!response.ok)
