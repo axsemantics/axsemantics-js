@@ -260,6 +260,19 @@ const Training = function (fetch, baseUrl, token) {
 				// {training, name, uid, data}
 				return api.fetch(`validation-data/`, 'POST', validationData)
 			},
+			createSyncedDocument (trainingId, collection_id, document) {
+				return api.fetch(`validation-data/create-synced/`, 'POST', {
+					training: trainingId,
+					name: document.name,
+					uid: document.uid,
+					data: document.blob,
+					myax_api_version: 2,
+					myax_reference: {
+						collection_id,
+						document_id: document.id
+					}
+				})
+			},
 			update (validationData) {
 				const {id, name, uid, data} = validationData
 				return api.fetch(`validation-data/${id}/`, 'PATCH', {
