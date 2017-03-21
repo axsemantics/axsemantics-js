@@ -286,6 +286,9 @@ const Training = function (fetch, baseUrl, token) {
 			},
 			selectDefault (id, language) {
 				return api.fetch(`validation-data/${id}/select-global/`, 'PUT', {language})
+			},
+			sync (id) {
+				return api.fetch(`validation-data/${id}/sync/`, 'PUT')
 			}
 		},
 		vocabularies: {
