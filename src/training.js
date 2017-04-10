@@ -6,7 +6,9 @@ const Training = function (fetch, baseUrl, token) {
 	const api = {
 		asoRequests: {
 			list () {},
-			get (id) {}
+			get (id) {
+				return api.fetch(`aso-requests/${id}/`)
+			}
 		},
 		languages: {
 			list () {
@@ -245,6 +247,13 @@ const Training = function (fetch, baseUrl, token) {
 			pushReferences (training) {
 				return api.fetch(`trainings/${training.id}/`, 'PATCH', {
 					myaxReferences: training.myaxReferences
+				})
+			},
+			requestAso (training, language, validation_data) {
+				return api.fetch(`trainings/${training.id}/aso-request/`, 'POST', {
+					language,
+					validation_data,
+					aso_mode: 'json'
 				})
 			}
 		},
