@@ -290,6 +290,9 @@ const Training = function (fetch, baseUrl, token) {
 					data
 				})
 			},
+			delete (id) {
+				return api.fetch(`validation-data/${id}/`, 'DELETE')
+			},
 			select (id, language) {
 				return api.fetch(`validation-data/${id}/select/`, 'PUT', {language})
 			},
