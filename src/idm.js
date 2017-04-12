@@ -15,6 +15,11 @@ const IDM = function (fetch) {
 		user: {
 			get () {
 				return api.fetch(`user/`)
+			},
+			saveSettings (settings) {
+				return api.fetch('user/', 'PATCH', {
+					settings
+				})
 			}
 		},
 		tokenExchange (refresh_token) {
