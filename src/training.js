@@ -229,7 +229,7 @@ const Training = function (fetch, baseUrl, token) {
 		},
 		trainings: {
 			list (fields = 'id,name') {
-				return api.fetch(`trainings/?fields=${fields}&container_mode=True`)
+				return api.fetch(`trainings/?fields=${fields}`)
 			},
 			get (id) {
 				return api.fetch(`trainings/${id}/`)
