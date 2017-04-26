@@ -20,6 +20,12 @@ const lexicon = function (fetch, baseUrl, token) {
 			delete (id) {
 				return api.fetch(`lexica/${id}/`, 'DELETE')
 			},
+			addTraining (id, trainingId) {
+				return api.fetch(`lexica/${id}/add-trainings/`, 'POST', {trainings: [trainingId]})
+			},
+			removeTraining (id, trainingId) {
+				return api.fetch(`lexica/${id}/remove-trainings/`, 'POST', {trainings: [trainingId]})
+			},
 			getLexiconEntry (id) {
 				return api.fetch(`lexica/${id}/`)
 			},
