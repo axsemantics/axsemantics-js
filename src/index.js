@@ -45,7 +45,8 @@ class AxSemanticsClient {
 				return Promise.resolve()
 			return response.json().then((json) => {
 				if (!response.ok)
-					return Promise.reject({response, json})
+					// TODO change to error
+					return Promise.reject({response, json}) // eslint-disable-line
 				return Promise.resolve(json)
 			})
 		}).catch((error) => {

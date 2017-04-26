@@ -4,6 +4,19 @@ import { cleanQuery } from './utils'
 
 const Training = function (fetch, baseUrl, token) {
 	const api = {
+		activityLogs: {
+			list (trainingId, filters = {}, options = {}) {
+				const query = {
+					training: trainingId,
+					page: options.page
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`activity-logs/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`activity-logs/${id}/`)
+			}
+		},
 		asoRequests: {
 			list () {},
 			get (id) {
