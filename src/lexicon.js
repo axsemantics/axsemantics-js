@@ -21,10 +21,10 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`lexica/${id}/`, 'DELETE')
 			},
 			addTraining (id, trainingId) {
-				return api.fetch(`lexica/${id}/add-trainings/`, 'POST', {trainings: [trainingId]})
+				return api.fetch(`lexica/${id}/add-training/`, 'POST', {training: trainingId})
 			},
 			removeTraining (id, trainingId) {
-				return api.fetch(`lexica/${id}/remove-trainings/`, 'POST', {trainings: [trainingId]})
+				return api.fetch(`lexica/${id}/remove-training/`, 'POST', {training: trainingId})
 			},
 			getLexiconEntry (id) {
 				return api.fetch(`lexica/${id}/`)
