@@ -12,9 +12,12 @@ const IDM = function (fetch) {
 				return api.fetch(`groups/${group}/portal/`, 'POST')
 			}
 		},
-		user: {
-			get () {
+		users: {
+			getMe () {
 				return api.fetch(`user/`)
+			},
+			getByEmail (email) {
+				return api.fetch(`user/?email=${email}`)
 			},
 			saveSettings (settings) {
 				return api.fetch('user/', 'PATCH', {
