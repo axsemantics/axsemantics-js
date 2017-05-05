@@ -1,14 +1,31 @@
 /* eslint camelcase: "off" */
-const BulkUpload = function (fetch, baseUrl, token) {
+/* global FormData */
+const BulkUpload = function (fetch, idToken) {
 	const api = {
 		uploads: {
 			list () {
 				return api.fetch(`uploads/`)
+			},
+			upload (collectionId, hint, file) {
+				const data = new FormData()
+				data.append('collection_id', collectionId)
+				data.append('hint', hint)
+				data.append('data_file', file)
+				return api.fetch(`uploads/`, 'POST', data)
 			}
 		}
 	}
 
-	api.fetch = fetch
+	api.fetch = function (url, method, body) {
+		const headers = {
+			'authorization': `JWT ${idToken}`,
+			'Accept': 'application/json'
+		}
+		if (!(body instanceof FormData)) {
+			headers['Content-Type'] = 'application/json'
+		}
+		return fetch(url, method, body, headers)
+	}
 	return api
 }
 

@@ -1,3 +1,4 @@
+/* global FormData */
 import Training from './training'
 import MyAx from './myax'
 import IDM from './idm'
@@ -26,7 +27,7 @@ class AxSemanticsClient {
 		this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
 		this._idm = IDM(config.fetch.bind(this, config.idmBaseUrl))
 		this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
-		this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl))
+		this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl), this.idToken)
 	}
 
 	static fetch (baseUrl, url, method, body, userHeaders) {
@@ -38,7 +39,7 @@ class AxSemanticsClient {
 		const options = {
 			method: method || 'GET',
 			headers,
-			body: JSON.stringify(body)
+			body: body instanceof FormData ? body : JSON.stringify(body)
 		}
 		return window.fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
 			if (response.status === 204) // no content to parse
