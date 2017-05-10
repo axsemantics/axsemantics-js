@@ -6,6 +6,9 @@ const BulkUpload = function (fetch, idToken) {
 			list () {
 				return api.fetch(`uploads/`)
 			},
+			get (uploadId) {
+				return api.fetch(`uploads/${uploadId}/`)
+			},
 			upload (collectionId, hint, file) {
 				const data = new FormData()
 				data.append('collection_id', collectionId)
