@@ -4,7 +4,7 @@ const BulkUpload = function (fetch, idToken) {
 	const api = {
 		uploads: {
 			list () {
-				return api.fetch(`uploads/`)
+				return api.fetch(`uploads/?page_size=100`)
 			},
 			get (uploadId) {
 				return api.fetch(`uploads/${uploadId}/`)
@@ -15,6 +15,11 @@ const BulkUpload = function (fetch, idToken) {
 				data.append('hint', hint)
 				data.append('data_file', file)
 				return api.fetch(`uploads/`, 'POST', data)
+			}
+		},
+		itemResponses: {
+			listByUpload (uploadId) {
+				return api.fetch(`item-responses/?upload=${uploadId}`)
 			}
 		}
 	}
