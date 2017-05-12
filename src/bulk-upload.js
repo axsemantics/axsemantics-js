@@ -1,5 +1,8 @@
 /* eslint camelcase: "off" */
 /* global FormData */
+import querystring from 'querystring'
+import { cleanQuery } from './utils'
+
 const BulkUpload = function (fetch, idToken) {
 	const api = {
 		uploads: {
@@ -18,8 +21,13 @@ const BulkUpload = function (fetch, idToken) {
 			}
 		},
 		itemResponses: {
-			listByUpload (uploadId) {
-				return api.fetch(`item-responses/?upload=${uploadId}`)
+			listByUpload (uploadId, options = {}) {
+				const query = {
+					upload: uploadId,
+					only_user_errors: options.errorsOnly
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`item-responses/?${qs}`)
 			}
 		}
 	}
