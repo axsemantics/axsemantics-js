@@ -24,7 +24,8 @@ const BulkUpload = function (fetch, idToken) {
 			listByUpload (uploadId, options = {}) {
 				const query = {
 					upload: uploadId,
-					only_user_errors: options.errorsOnly
+					only_user_errors: options.errorsOnly,
+					page_size: 100
 				}
 				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`item-responses/?${qs}`)
