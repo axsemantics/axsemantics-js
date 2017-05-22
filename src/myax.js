@@ -93,6 +93,24 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/documents/${documentId}/`, 'DELETE')
 			}
 		},
+		histograms: {
+			list (collectionId) {
+				const query = {
+					collection: collectionId
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`v2/histograms/?${qs}`)
+			},
+			create (collectionId) {
+				const data = {
+					collection: collectionId
+				}
+				return api.fetch(`v2/histograms/`, 'POST', data)
+			},
+			get (id) {
+				return api.fetch(`v2/histograms/${id}/`)
+			}
+		}
 		exports: {
 			list (collectionId) {
 				const query = {
