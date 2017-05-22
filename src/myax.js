@@ -110,7 +110,7 @@ const MyAx = function (fetch, baseUrl, token) {
 			get (id) {
 				return api.fetch(`v2/histograms/${id}/`)
 			}
-		}
+		},
 		exports: {
 			list (collectionId) {
 				const query = {
