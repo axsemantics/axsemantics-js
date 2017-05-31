@@ -1,4 +1,6 @@
 /* eslint camelcase: "off" */
+import querystring from 'querystring'
+
 const IDM = function (fetch) {
 	const api = {
 		groups: {
@@ -17,7 +19,8 @@ const IDM = function (fetch) {
 				return api.fetch(`user/`)
 			},
 			getByEmail (email) {
-				return api.fetch(`user/?email=${email}`)
+				const qs = querystring.stringify({email})
+				return api.fetch(`user/?${qs}`)
 			},
 			saveSettings (settings) {
 				return api.fetch('user/', 'PATCH', {
