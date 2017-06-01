@@ -257,6 +257,9 @@ const Training = function (fetch, baseUrl, token) {
 					container_mode: true
 				})
 			},
+			delete (id) {
+				return api.fetch(`trainings/${id}/`, 'DELETE')
+			},
 			pushReferences (training) {
 				return api.fetch(`trainings/${training.id}/`, 'PATCH', {
 					myaxReferences: training.myaxReferences
