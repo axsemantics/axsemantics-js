@@ -1,4 +1,5 @@
-/* global FormData */
+/* global FormData, fetch */
+import EventEmitter from 'events'
 import Training from './training'
 import MyAx from './myax'
 import IDM from './idm'
@@ -9,8 +10,9 @@ import BulkUpload from './bulk-upload'
 //
 // The client operates on plain js objects and quasi-static procedures.
 // It also unifies both the myax and training apis into one interface.
-class AxSemanticsClient {
+class AxSemanticsClient extends EventEmitter {
 	constructor (userConfig) {
+		super()
 		const config = {
 			myAxBaseUrl: 'https://api.ax-semantics.com/',
 			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
@@ -22,12 +24,23 @@ class AxSemanticsClient {
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
 		}
 		Object.assign(config, userConfig)
-		this.idToken = config.idToken
-		this._myax = MyAx(config.fetch.bind(this, config.myAxBaseUrl))
-		this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
-		this._idm = IDM(config.fetch.bind(this, config.idmBaseUrl))
-		this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
-		this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl), this.idToken)
+		this._idm = IDM(config.fetch.bind(this, config.idmBaseUrl)) // needed for refresh token shake
+		const initApis = (idToken) => {
+			this.idToken = idToken
+			this._myax = MyAx(config.fetch.bind(this, config.myAxBaseUrl))
+			this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
+			this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
+			this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl), this.idToken)
+		}
+		if (config.refreshToken) {
+			this._idm.tokenExchange(config.refreshToken).then((tokenExchange) => {
+				initApis(tokenExchange.id_token)
+				this.emit('ready')
+			})
+		} else {
+			initApis(config.idToken)
+			this.emit('ready')
+		}
 	}
 
 	static fetch (baseUrl, url, method, body, userHeaders) {
@@ -41,7 +54,7 @@ class AxSemanticsClient {
 			headers,
 			body: body instanceof FormData ? body : JSON.stringify(body)
 		}
-		return window.fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
+		return fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
 			if (response.status === 204) // no content to parse
 				return Promise.resolve()
 			return response.json().then((json) => {

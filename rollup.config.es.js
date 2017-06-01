@@ -4,5 +4,6 @@ export default {
 	entry: 'src/index.js',
 	format: 'es',
 	plugins: [babel()],
-	dest: 'dist/axsemantics.es.js'
+	dest: 'dist/axsemantics.es.js',
+	external: ['events', 'querystring']
 }
