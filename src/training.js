@@ -1,6 +1,6 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-import { cleanQuery } from './utils'
+import { cleanQuery, cleanNulls } from './utils'
 
 const Training = function (fetch, baseUrl, token) {
 	const api = {
@@ -76,13 +76,21 @@ const Training = function (fetch, baseUrl, token) {
 				return api.fetch(`properties/${id}/`, 'DELETE')
 			},
 			update (property) {
-				const {id, name, truth_expression, mapping_expression, comment} = property
-				return api.fetch(`properties/${id}/`, 'PATCH', {
+				const {id, name, truthExpression, mappingExpression, comment, x, y, z, height, width, typeHint, userReferences} = property
+				const patchset = cleanNulls({
 					name,
-					truth_expression,
-					mapping_expression,
-					comment
+					truthExpression,
+					mappingExpression,
+					comment,
+					typeHint,
+					userReferences,
+					x,
+					y,
+					z,
+					height,
+					width
 				})
+				return api.fetch(`properties/${id}/`, 'PATCH', patchset)
 			}
 		},
 		sentenceGroups: {
@@ -320,11 +328,33 @@ const Training = function (fetch, baseUrl, token) {
 			}
 		},
 		vocabularies: {
-			list () {},
-			get (id) {},
-			create () {},
-			delete (id) {},
-			update () {}
+			list (propertyId, filters = {}, options = {}) {
+				const query = {
+					property: propertyId,
+					language: filters.language,
+					page: options.page
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`vocabularies/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`vocabularies/${id}/`)
+			},
+			create (vocabulary) {
+				return api.fetch(`vocabularies/`, 'POST', vocabulary)
+			},
+			delete (id) {
+				return api.fetch(`vocabularies/${id}/`, 'DELETE')
+			},
+			update (vocabulary) {
+				const {id, noun, headnoun, adjective} = vocabulary
+				const patchset = cleanNulls({
+					noun,
+					headnoun,
+					adjective
+				})
+				return api.fetch(`vocabularies/${id}/`, 'PATCH', patchset)
+			}
 		}
 	}
 
