@@ -32,6 +32,96 @@ const lexicon = function (fetch, baseUrl, token) {
 			patch (id, lexiconEntry) {
 				return api.fetch(`lexica/${id}/`, 'PATCH', lexiconEntry)
 			}
+		},
+		nouns: {
+			list (trainings, options = {}) {
+				const query = {
+					trainings,
+					page: options.page,
+					language: options.language,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`nouns/?${qs}`)
+			},
+			create (lexiconEntry) {
+				return api.fetch('nouns/', 'POST', lexiconEntry)
+			},
+			delete (id) {
+				return api.fetch(`nouns/${id}/`, 'DELETE')
+			},
+			addTraining (id, trainingId) {
+				return api.fetch(`nouns/${id}/add-training/`, 'POST', {training: trainingId})
+			},
+			removeTraining (id, trainingId) {
+				return api.fetch(`nouns/${id}/remove-training/`, 'POST', {training: trainingId})
+			},
+			getLexiconEntry (id) {
+				return api.fetch(`nouns/${id}/`)
+			},
+			patch (id, lexiconEntry) {
+				return api.fetch(`nouns/${id}/`, 'PATCH', lexiconEntry)
+			}
+		},
+		verbs: {
+			list (trainings, options = {}) {
+				const query = {
+					trainings,
+					page: options.page,
+					language: options.language,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`verbs/?${qs}`)
+			},
+			create (lexiconEntry) {
+				return api.fetch('verbs/', 'POST', lexiconEntry)
+			},
+			delete (id) {
+				return api.fetch(`verbs/${id}/`, 'DELETE')
+			},
+			addTraining (id, trainingId) {
+				return api.fetch(`verbs/${id}/add-training/`, 'POST', {training: trainingId})
+			},
+			removeTraining (id, trainingId) {
+				return api.fetch(`verbs/${id}/remove-training/`, 'POST', {training: trainingId})
+			},
+			getLexiconEntry (id) {
+				return api.fetch(`verbs/${id}/`)
+			},
+			patch (id, lexiconEntry) {
+				return api.fetch(`verbs/${id}/`, 'PATCH', lexiconEntry)
+			}
+		},
+		adjectives: {
+			list (trainings, options = {}) {
+				const query = {
+					trainings,
+					page: options.page,
+					language: options.language,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`adjectives/?${qs}`)
+			},
+			create (lexiconEntry) {
+				return api.fetch('adjectives/', 'POST', lexiconEntry)
+			},
+			delete (id) {
+				return api.fetch(`adjectives/${id}/`, 'DELETE')
+			},
+			addTraining (id, trainingId) {
+				return api.fetch(`adjectives/${id}/add-training/`, 'POST', {training: trainingId})
+			},
+			removeTraining (id, trainingId) {
+				return api.fetch(`adjectives/${id}/remove-training/`, 'POST', {training: trainingId})
+			},
+			getLexiconEntry (id) {
+				return api.fetch(`adjectives/${id}/`)
+			},
+			patch (id, lexiconEntry) {
+				return api.fetch(`adjectives/${id}/`, 'PATCH', lexiconEntry)
+			}
 		}
 	}
 	api.fetch = fetch
