@@ -29,8 +29,8 @@ const lexicon = function (fetch, baseUrl, token) {
 			getLexiconEntry (id) {
 				return api.fetch(`lexica/${id}/`)
 			},
-			patch (id, lexiconEntry) {
-				return api.fetch(`lexica/${id}/`, 'PATCH', lexiconEntry)
+			patch (lexiconEntry) {
+				return api.fetch(`lexica/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		},
 		nouns: {
@@ -56,11 +56,11 @@ const lexicon = function (fetch, baseUrl, token) {
 			removeTraining (id, trainingId) {
 				return api.fetch(`nouns/${id}/remove-training/`, 'POST', {training: trainingId})
 			},
-			getLexiconEntry (id) {
+			get (id) {
 				return api.fetch(`nouns/${id}/`)
 			},
-			patch (id, lexiconEntry) {
-				return api.fetch(`nouns/${id}/`, 'PATCH', lexiconEntry)
+			update (lexiconEntry) {
+				return api.fetch(`nouns/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		},
 		verbs: {
@@ -86,11 +86,11 @@ const lexicon = function (fetch, baseUrl, token) {
 			removeTraining (id, trainingId) {
 				return api.fetch(`verbs/${id}/remove-training/`, 'POST', {training: trainingId})
 			},
-			getLexiconEntry (id) {
+			get (id) {
 				return api.fetch(`verbs/${id}/`)
 			},
-			patch (id, lexiconEntry) {
-				return api.fetch(`verbs/${id}/`, 'PATCH', lexiconEntry)
+			update (lexiconEntry) {
+				return api.fetch(`verbs/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		},
 		adjectives: {
@@ -116,11 +116,11 @@ const lexicon = function (fetch, baseUrl, token) {
 			removeTraining (id, trainingId) {
 				return api.fetch(`adjectives/${id}/remove-training/`, 'POST', {training: trainingId})
 			},
-			getLexiconEntry (id) {
+			get (id) {
 				return api.fetch(`adjectives/${id}/`)
 			},
-			patch (id, lexiconEntry) {
-				return api.fetch(`adjectives/${id}/`, 'PATCH', lexiconEntry)
+			update (lexiconEntry) {
+				return api.fetch(`adjectives/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		}
 	}
