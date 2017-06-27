@@ -122,6 +122,11 @@ const lexicon = function (fetch, baseUrl, token) {
 			update (lexiconEntry) {
 				return api.fetch(`adjectives/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
+		},
+		languageDefinitions: {
+			get (language) {
+				return api.fetch(`definitions/${language}/`)
+			}
 		}
 	}
 	api.fetch = fetch
