@@ -237,16 +237,39 @@ const Training = function (fetch, baseUrl, token) {
 			list () {},
 			get (id) {},
 			create () {},
+			duplicate (id) {},
 			delete (id) {},
 			update () {}
 		},
 		storyTypes: {
-			list () {},
-			get (id) {},
-			create () {},
-			duplicate (id) {},
-			delete (id) {},
-			update () {}
+			list (trainingId) {
+				const query = {
+					training: trainingId
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`story-types/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`story-types/${id}/`)
+			},
+			create (storyType) {
+				return api.fetch(`story-types/`, 'POST', storyType)
+			},
+			duplicate (id, name) {
+				return api.fetch(`story-types/${id}/duplicate/`, 'POST', {name})
+			},
+			delete (id) {
+				return api.fetch(`story-types/${id}/`, 'DELETE')
+			},
+			update (storyType) {
+				const {id, name, auto_triggered, triggers, sentences} = storyType
+				return api.fetch(`story-types/${id}/`, 'PATCH', {
+					name,
+					auto_triggered,
+					triggers,
+					sentences
+				})
+			},
 		},
 		trainings: {
 			list (fields = 'id,name') {
