@@ -288,6 +288,9 @@ const Training = function (fetch, baseUrl, token) {
 					container_mode: true
 				})
 			},
+			update (id, patchset) {
+				return api.fetch(`trainings/${id}/`, 'PATCH', patchset)
+			},
 			delete (id) {
 				return api.fetch(`trainings/${id}/`, 'DELETE')
 			},
