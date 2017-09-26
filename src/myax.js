@@ -10,11 +10,20 @@ const MyAx = function (fetch, baseUrl, token) {
 	const api = {
 		collections: {
 			// options = {page_size: 50, fields}
+			InstantList  (training_id, options = {}) {
+				const query = {
+					training_id,
+					page_size: options.pageSize || 50,
+					is_instant: true
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`v2/collections/?${qs}`)
+			},
 			list (training_id, options = {}) {
 				const query = {
 					training_id,
 					page_size: options.pageSize || 50,
-					fields: fieldsFromOptions(options)
+					is_instant: false
 				}
 				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/?${qs}`)
