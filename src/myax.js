@@ -31,7 +31,7 @@ const MyAx = function (fetch, baseUrl, token) {
 					training_id,
 					page_size: options.pageSize || 50,
 					fields: fieldsFromOptions(options),
-					is_instant: false
+					is_instant: 0
 				}
 				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/?${qs}`)
