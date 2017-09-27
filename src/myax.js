@@ -1,6 +1,6 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-import { cleanQuery } from './utils'
+import { cleanQuery, cleanNulls } from './utils'
 
 const fieldsFromOptions = function (options) {
 	return options.fields instanceof Array ? options.fields.join(',') : options.fields
@@ -31,9 +31,9 @@ const MyAx = function (fetch, baseUrl, token) {
 					training_id,
 					page_size: options.pageSize || 50,
 					fields: fieldsFromOptions(options),
-					is_instant: 0
+					is_instant: false
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = querystring.stringify(cleanNulls(query))
 				return api.fetch(`v2/collections/?${qs}`)
 			},
 			get (id, options = {}) {
