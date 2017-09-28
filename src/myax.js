@@ -8,7 +8,7 @@ const fieldsFromOptions = function (options) {
 
 const MyAx = function (fetch, baseUrl, token) {
 	const api = {
-		instantEndpoint: {
+		instantGenerationEndpoints: {
 			list  (training_id, options = {}) {
 				const query = {
 					training_id,
@@ -19,9 +19,9 @@ const MyAx = function (fetch, baseUrl, token) {
 				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/?${qs}`)
 			},
-			create (collection) {
-				collection.is_instant = true
-				return api.fetch(`v2/collections/`, 'POST', collection)
+			create (endpoint) {
+				endpoint.is_instant = true
+				return api.fetch(`v2/collections/`, 'POST', endpoint)
 			}
 		},
 		collections: {
