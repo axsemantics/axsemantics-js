@@ -33,6 +33,26 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`nouns/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		},
+		missingNouns: {
+			list (training, options = {}) {
+				const query = {
+					training,
+					page: options.page,
+					ignored: options.ignored,
+					language: options.language,
+					search: options.search,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`missing-nouns/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`missing-nouns/${id}/`)
+			},
+			ignore (id) {
+				return api.fetch(`missing-nouns/${id}/ignore/`)
+			}
+		},
 		verbs: {
 			list (trainings, options = {}) {
 				const query = {
@@ -63,6 +83,26 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`verbs/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
 			}
 		},
+		missingVerbs: {
+			list (training, options = {}) {
+				const query = {
+					training,
+					page: options.page,
+					ignored: options.ignored,
+					language: options.language,
+					search: options.search,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`missing-verbs/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`missing-verbs/${id}/`)
+			},
+			ignore (id) {
+				return api.fetch(`missing-verbs/${id}/ignore/`)
+			}
+		},
 		adjectives: {
 			list (trainings, options = {}) {
 				const query = {
@@ -91,6 +131,26 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			update (lexiconEntry) {
 				return api.fetch(`adjectives/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
+			}
+		},
+		missingAdjectives: {
+			list (training, options = {}) {
+				const query = {
+					training,
+					page: options.page,
+					ignored: options.ignored,
+					language: options.language,
+					search: options.search,
+					o: options.modified
+				}
+				const qs = querystring.stringify(cleanQuery(query))
+				return api.fetch(`missing-adjectives/?${qs}`)
+			},
+			get (id) {
+				return api.fetch(`missing-adjectives/${id}/`)
+			},
+			ignore (id) {
+				return api.fetch(`missing-adjectives/${id}/ignore/`)
 			}
 		},
 		languageDefinitions: {
