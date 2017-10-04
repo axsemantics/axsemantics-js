@@ -50,7 +50,7 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`missing-nouns/${id}/`)
 			},
 			ignore (id) {
-				return api.fetch(`missing-nouns/${id}/ignore/`)
+				return api.fetch(`missing-nouns/${id}/ignore/`, 'PUT')
 			}
 		},
 		verbs: {
@@ -100,7 +100,7 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`missing-verbs/${id}/`)
 			},
 			ignore (id) {
-				return api.fetch(`missing-verbs/${id}/ignore/`)
+				return api.fetch(`missing-verbs/${id}/ignore/`, 'PUT')
 			}
 		},
 		adjectives: {
@@ -150,7 +150,7 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`missing-adjectives/${id}/`)
 			},
 			ignore (id) {
-				return api.fetch(`missing-adjectives/${id}/ignore/`)
+				return api.fetch(`missing-adjectives/${id}/ignore/`, 'PUT')
 			}
 		},
 		languageDefinitions: {
