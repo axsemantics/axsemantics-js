@@ -12,6 +12,24 @@ const IDM = function (fetch) {
 			},
 			chargeBeePortal (group) {
 				return api.fetch(`groups/${group}/portal/`, 'POST')
+			},
+			invite (group, email) {
+				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT')
+			},
+			cancelInvite (group, email) {
+				return api.fetch(`groups/${group}/invitation/${email}/`, 'DELETE')
+			},
+			appointOwner (group, email) {
+				return api.fetch(`groups/${group}/owner/${email}/`, 'PUT')
+			},
+			revokeOwner (group, email) {
+				return api.fetch(`groups/${group}/owner/${email}/`, 'DELETE')
+			},
+			appointAdmin (group, email) {
+				return api.fetch(`groups/${group}/admin/${email}/`, 'PUT')
+			},
+			revokeAdmin (group, email) {
+				return api.fetch(`groups/${group}/admin/${email}/`, 'DELETE')
 			}
 		},
 		users: {
@@ -26,6 +44,9 @@ const IDM = function (fetch) {
 				return api.fetch('user/', 'PATCH', {
 					settings
 				})
+			},
+			acceptInvitation (user, group) {
+				return api.fetch(`user/${user}/accept-invitation/${group}/`, 'POST')
 			}
 		},
 		tokenExchange (refresh_token) {
