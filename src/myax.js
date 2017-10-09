@@ -19,6 +19,9 @@ const MyAx = function (fetch, baseUrl, token) {
 				const qs = querystring.stringify(cleanQuery(query))
 				return api.fetch(`v2/collections/?${qs}`)
 			},
+			get (id, options = {}) {
+				return api.collections.get(id, options)
+			},
 			create (endpoint) {
 				endpoint.is_instant = true
 				return api.fetch(`v2/collections/`, 'POST', endpoint)
