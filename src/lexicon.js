@@ -51,6 +51,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			ignore (id) {
 				return api.fetch(`missing-nouns/${id}/ignore/`, 'PUT')
+			},
+			undoIgnore (id) {
+				return api.fetch(`missing-nouns/${id}/ignore/`, 'DELETE')
 			}
 		},
 		verbs: {
@@ -101,6 +104,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			ignore (id) {
 				return api.fetch(`missing-verbs/${id}/ignore/`, 'PUT')
+			},
+			undoIgnore (id) {
+				return api.fetch(`missing-verbs/${id}/ignore/`, 'DELETE')
 			}
 		},
 		adjectives: {
@@ -151,6 +157,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			ignore (id) {
 				return api.fetch(`missing-adjectives/${id}/ignore/`, 'PUT')
+			},
+			undoIgnore (id) {
+				return api.fetch(`missing-adjectives/${id}/ignore/`, 'DELETE')
 			}
 		},
 		languageDefinitions: {
