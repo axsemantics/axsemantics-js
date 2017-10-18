@@ -60,6 +60,7 @@ const MyAx = function (fetch, baseUrl, token) {
 					uses_published_training: collection.uses_published_training,
 					webhook_secret: collection.webhook_secret,
 					webhook_url: collection.webhook_url,
+					fail_webhook_url: collection.fail_webhook_url,
 					flags: collection.flags
 				})
 			},
