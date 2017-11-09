@@ -1,6 +1,6 @@
 {
   "name": "axsemantics",
-  "version": "0.48.0",
+  "version": "0.49.0",
   "description": "AX-Semantics API Client",
   "main": "dist/axsemantics.js",
   "jsnext:main": "dist/axsemantics.es.js",
