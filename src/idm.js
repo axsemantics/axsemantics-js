@@ -36,6 +36,9 @@ const IDM = function (fetch) {
 			getMe () {
 				return api.fetch(`user/`)
 			},
+			saveME (user) {
+				return api.fetch('user/', 'PATCH', user)
+			},
 			getByEmail (email) {
 				const qs = querystring.stringify({email})
 				return api.fetch(`user/?${qs}`)
