@@ -36,7 +36,7 @@ const IDM = function (fetch) {
 			getMe () {
 				return api.fetch(`user/`)
 			},
-			saveME (user) {
+			save (user) {
 				return api.fetch('user/', 'PATCH', user)
 			},
 			getByEmail (email) {
