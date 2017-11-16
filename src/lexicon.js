@@ -163,6 +163,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			}
 		},
 		languageDefinitions: {
+			list () {
+				return api.fetch('definitions/')
+			},
 			get (language) {
 				return api.fetch(`definitions/${language}/`)
 			}
