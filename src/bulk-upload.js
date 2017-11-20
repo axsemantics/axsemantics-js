@@ -18,6 +18,9 @@ const BulkUpload = function (fetch, idToken) {
 				data.append('hint', hint)
 				data.append('data_file', file)
 				return api.fetch(`uploads/`, 'POST', data)
+			},
+			getFileLink (id) {
+				return api.fetch(`uploads/${id}/`)
 			}
 		},
 		itemResponses: {
