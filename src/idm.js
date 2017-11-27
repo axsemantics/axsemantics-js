@@ -19,17 +19,11 @@ const IDM = function (fetch) {
 			cancelInvite (group, email) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'DELETE')
 			},
-			appointOwner (group, email) {
-				return api.fetch(`groups/${group}/owner/${email}/`, 'PUT')
+			appointRole (group, role, email) {
+				return api.fetch(`groups/${group}/${role}/${email}/`, 'PUT')
 			},
-			revokeOwner (group, email) {
-				return api.fetch(`groups/${group}/owner/${email}/`, 'DELETE')
-			},
-			appointAdmin (group, email) {
-				return api.fetch(`groups/${group}/admin/${email}/`, 'PUT')
-			},
-			revokeAdmin (group, email) {
-				return api.fetch(`groups/${group}/admin/${email}/`, 'DELETE')
+			revokeRole (group, role, email) {
+				return api.fetch(`groups/${group}/${role}/${email}/`, 'DELETE')
 			}
 		},
 		users: {
