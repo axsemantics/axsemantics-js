@@ -13,8 +13,8 @@ const IDM = function (fetch) {
 			chargeBeePortal (group) {
 				return api.fetch(`groups/${group}/portal/`, 'POST')
 			},
-			invite (group, email) {
-				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT')
+			invite (group, email, name) {
+				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT', {name})
 			},
 			cancelInvite (group, email) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'DELETE')
