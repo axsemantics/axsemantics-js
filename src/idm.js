@@ -24,6 +24,9 @@ const IDM = function (fetch) {
 			},
 			revokeRole (group, role, email) {
 				return api.fetch(`groups/${group}/${role}/${email}/`, 'DELETE')
+			},
+			purchaseSeat (group, pay_extra_money) {
+				return api.fetch(`groups/${group}/purchase-seat/`, 'POST', {pay_extra_money})
 			}
 		},
 		users: {
