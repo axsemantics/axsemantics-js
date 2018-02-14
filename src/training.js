@@ -284,8 +284,7 @@ const Training = function (fetch, baseUrl, token) {
 			create (name, license_holder) {
 				return api.fetch(`trainings/`, 'POST', {
 					name,
-					license_holder,
-					container_mode: true
+					license_holder
 				})
 			},
 			update (id, patchset) {
