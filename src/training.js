@@ -304,6 +304,14 @@ const Training = function (fetch, baseUrl, token) {
 					validation_data,
 					aso_mode: 'json'
 				})
+			},
+			generateProperty (training, dataKeyName, dataType, languages) {
+				const _languages = languages || ['*']
+				const _dataType = dataType || 'string'
+				return api.fetch(`trainings/${training.id}/generate-properties/`, 'POST', {
+					dataKeys: [{name: dataKeyName, type: _dataType}],
+					languages: _languages
+				})
 			}
 		},
 		// https://github.com/aexeagmbh/rincewind/issues/317#issuecomment-286102626
