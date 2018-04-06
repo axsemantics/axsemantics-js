@@ -3,6 +3,14 @@ import querystring from 'querystring'
 
 const IDM = function (fetch) {
 	const api = {
+		billing: {
+			getAddress (group) {
+				return api.fetch(`groups/${group}/billing-address`)
+			},
+			updateAddress (group, billing_address) {
+				return api.fetch(`groups/${group}/billing-address`, 'PATCH', {billing_address})
+			}
+		},
 		groups: {
 			list () {
 				return api.fetch(`groups/`)
