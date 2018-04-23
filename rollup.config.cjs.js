@@ -10,11 +10,11 @@ export default {
 	plugins: [
 		babel(),
 		inject({
-			include: 'src/index.js',
+			include: 'src/*.js',
 			fetch: 'node-fetch',
 			FormData: 'form-data',
 			URLSearchParams: ['url', 'URLSearchParams']
 		})
 	],
-	external: ['events', 'querystring', 'node-fetch', 'form-data']
+	external: ['events', 'node-fetch', 'form-data', 'url']
 }
