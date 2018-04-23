@@ -5,6 +5,7 @@ import MyAx from './myax'
 import IDM from './idm'
 import Lexicon from './lexicon'
 import BulkUpload from './bulk-upload'
+import Quest from './quest'
 
 // Why use class and not just a constructor function? Because we can, and it is a tad cleaner.
 //
@@ -19,6 +20,7 @@ class AxSemanticsClient extends EventEmitter {
 			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
 			bulkUploadBaseUrl: 'https://bulk-api.ax-semantics.com/v1/',
+			questBaseUrl: 'https://quest-api.ax-semantics.com/',
 			idToken: '',
 			refreshToken: null,
 			fetch: AxSemanticsClient.fetch // set this for handling the fetch promise globally
@@ -31,6 +33,7 @@ class AxSemanticsClient extends EventEmitter {
 			this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
 			this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
 			this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl), this.idToken)
+			this._quest = Quest(config.fetch.bind(this, config.questBaseUrl), this.idToken)
 		}
 		if (config.refreshToken) {
 			this._idm.tokenExchange(config.refreshToken).then((tokenExchange) => {
