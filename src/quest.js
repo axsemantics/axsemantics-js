@@ -29,7 +29,7 @@ const Quest = function (fetch) {
 		users: {
 			get (email) {
 				const qs = querystring.stringify(cleanQuery({email}))
-				return api.fetch(`languages/?email=${qs}`)
+				return api.fetch(`users/?${qs}`)
 			},
 		}
 	}
