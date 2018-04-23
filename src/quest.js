@@ -1,6 +1,6 @@
 /* eslint camelcase: "off" */
 import querystring from 'querystring'
-import cleanQuery from './utils'
+import {cleanQuery} from './utils'
 
 const Quest = function (fetch) {
 	const api = {
