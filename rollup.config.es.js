@@ -1,9 +1,11 @@
 import babel from 'rollup-plugin-babel'
 
 export default {
-	entry: 'src/index.js',
-	format: 'es',
+	input: 'src/index.js',
+	output: {
+		format: 'es',
+		file: 'dist/axsemantics.es.js'
+	},
 	plugins: [babel()],
-	dest: 'dist/axsemantics.es.js',
 	external: ['events', 'querystring']
 }

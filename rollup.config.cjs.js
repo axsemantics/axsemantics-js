@@ -2,16 +2,19 @@ import babel from 'rollup-plugin-babel'
 import inject from 'rollup-plugin-inject'
 
 export default {
-	entry: 'src/index.js',
-	format: 'cjs',
+	input: 'src/index.js',
+	output: {
+		format: 'cjs',
+		file: 'dist/axsemantics.js'
+	},
 	plugins: [
 		babel(),
 		inject({
 			include: 'src/index.js',
 			fetch: 'node-fetch',
-			FormData: 'form-data'
+			FormData: 'form-data',
+			URLSearchParams: ['url', 'URLSearchParams']
 		})
 	],
-	dest: 'dist/axsemantics.js',
 	external: ['events', 'querystring', 'node-fetch', 'form-data']
 }
