@@ -1,6 +1,6 @@
 /* eslint camelcase: "off" */
 /* global URLSearchParams */
-import { cleanQuery, cleanNulls } from './utils'
+import { cleanQuery, cleanNullsorUndefined } from './utils'
 
 const fieldsFromOptions = function (options) {
 	return options.fields instanceof Array ? options.fields.join(',') : options.fields
@@ -36,7 +36,8 @@ const MyAx = function (fetch, baseUrl, token) {
 					fields: fieldsFromOptions(options),
 					is_instant: false
 				}
-				const qs = new URLSearchParams(cleanNulls(query)).toString()
+				console.log(query)
+				const qs = new URLSearchParams(cleanNullsorUndefined(query)).toString()
 				return api.fetch(`v2/collections/?${qs}`)
 			},
 			get (id, options = {}) {
