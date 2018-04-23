@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import querystring from 'querystring'
+/* global URLSearchParams */
 import { cleanQuery, cleanNulls } from './utils'
 
 const fieldsFromOptions = function (options) {
@@ -16,7 +16,7 @@ const MyAx = function (fetch, baseUrl, token) {
 					fields: fieldsFromOptions(options),
 					is_instant: true
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/collections/?${qs}`)
 			},
 			get (id, options = {}) {
@@ -36,14 +36,14 @@ const MyAx = function (fetch, baseUrl, token) {
 					fields: fieldsFromOptions(options),
 					is_instant: false
 				}
-				const qs = querystring.stringify(cleanNulls(query))
+				const qs = new URLSearchParams(cleanNulls(query)).toString()
 				return api.fetch(`v2/collections/?${qs}`)
 			},
 			get (id, options = {}) {
 				const query = {
 					fields: fieldsFromOptions(options)
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/collections/${id}/?${qs}`)
 			},
 			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
@@ -68,10 +68,11 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/collections/${id}/generate-content/`, 'POST')
 			},
 			generateFiltered (id, search, processingState) {
-				const query = {}
-				if (search) query.search = search
-				if (processingState) query.processing_state = processingState
-				const qs = querystring.stringify(query)
+				const query = {
+					search,
+					processing_state: processingState
+				}
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/collections/${id}/generate-content/?${qs}`, 'POST')
 			}
 		},
@@ -92,7 +93,7 @@ const MyAx = function (fetch, baseUrl, token) {
 					processing_state: filters.processingState,
 					fields: options.fields
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/documents/?${qs}`)
 			},
 			// blob has to contain 'name' and 'uid'
@@ -104,7 +105,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				const query = {
 					fields: fieldsFromOptions(options)
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/documents/${id}/?${qs}`)
 			},
 			generate (id) {
@@ -119,7 +120,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				const query = {
 					collection: collectionId
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/histograms/?${qs}`)
 			},
 			create (collectionId) {
@@ -137,7 +138,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				const query = {
 					collection: collectionId
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/story-exports/?${qs}`)
 			},
 			get (id) {

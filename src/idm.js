@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import querystring from 'querystring'
+/* global URLSearchParams */
 
 const IDM = function (fetch) {
 	const api = {
@@ -45,7 +45,7 @@ const IDM = function (fetch) {
 				return api.fetch('user/', 'PATCH', user)
 			},
 			getByEmail (email) {
-				const qs = querystring.stringify({email})
+				const qs = new URLSearchParams({email}).toString()
 				return api.fetch(`user/?${qs}`)
 			},
 			saveSettings (settings) {

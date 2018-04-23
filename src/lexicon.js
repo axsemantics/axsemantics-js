@@ -1,4 +1,4 @@
-import querystring from 'querystring'
+/* global URLSearchParams */
 import { cleanQuery } from './utils'
 
 const lexicon = function (fetch, baseUrl, token) {
@@ -11,7 +11,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					language: options.language,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`nouns/?${qs}`)
 			},
 			create (lexiconEntry) {
@@ -43,7 +43,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					search: options.search,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`missing-nouns/?${qs}`)
 			},
 			get (id) {
@@ -64,7 +64,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					language: options.language,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`verbs/?${qs}`)
 			},
 			create (lexiconEntry) {
@@ -96,7 +96,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					search: options.search,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`missing-verbs/?${qs}`)
 			},
 			get (id) {
@@ -117,7 +117,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					language: options.language,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`adjectives/?${qs}`)
 			},
 			create (lexiconEntry) {
@@ -149,7 +149,7 @@ const lexicon = function (fetch, baseUrl, token) {
 					search: options.search,
 					o: options.modified
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`missing-adjectives/?${qs}`)
 			},
 			get (id) {

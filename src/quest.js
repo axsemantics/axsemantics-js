@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import querystring from 'querystring'
+/* global URLSearchParams */
 import {cleanQuery} from './utils'
 
 const Quest = function (fetch) {
@@ -28,8 +28,8 @@ const Quest = function (fetch) {
 		},
 		users: {
 			get (email) {
-				const qs = querystring.stringify(cleanQuery({email}))
-				return api.fetch(`users/?${qs}`)
+				const qs = new URLSearchParams({email}).toString()
+				return api.fetch(`languages/?${qs}`)
 			},
 		}
 	}

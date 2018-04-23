@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import querystring from 'querystring'
+/* global URLSearchParams */
 import { cleanQuery, cleanNulls } from './utils'
 
 const Training = function (fetch, baseUrl, token) {
@@ -10,7 +10,7 @@ const Training = function (fetch, baseUrl, token) {
 					training: trainingId,
 					page: options.page
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`activity-logs/?${qs}`)
 			},
 			get (id) {
@@ -59,7 +59,7 @@ const Training = function (fetch, baseUrl, token) {
 					search: filters.search,
 					page: options.page
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`properties/?${qs}`)
 			},
 			get (id) {
@@ -167,7 +167,7 @@ const Training = function (fetch, baseUrl, token) {
 					sentence: sentenceId,
 					page: options.page
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`sentence-variants/?${qs}`)
 			},
 			get (id) {
@@ -202,7 +202,7 @@ const Training = function (fetch, baseUrl, token) {
 					training: trainingId,
 					page: options.page
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`sentences/?${qs}`)
 			},
 			get (id) {
@@ -246,7 +246,7 @@ const Training = function (fetch, baseUrl, token) {
 				const query = {
 					training: trainingId
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`story-types/?${qs}`)
 			},
 			get (id) {
@@ -372,7 +372,7 @@ const Training = function (fetch, baseUrl, token) {
 					language: filters.language,
 					page: options.page
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`vocabularies/?${qs}`)
 			},
 			get (id) {

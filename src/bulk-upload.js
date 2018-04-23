@@ -1,6 +1,5 @@
 /* eslint camelcase: "off" */
-/* global FormData */
-import querystring from 'querystring'
+/* global FormData, URLSearchParams */
 import { cleanQuery } from './utils'
 
 const BulkUpload = function (fetch, idToken) {
@@ -30,7 +29,7 @@ const BulkUpload = function (fetch, idToken) {
 					only_user_errors: options.errorsOnly,
 					page_size: 100
 				}
-				const qs = querystring.stringify(cleanQuery(query))
+				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`item-responses/?${qs}`)
 			}
 		}
