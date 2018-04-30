@@ -1,5 +1,5 @@
 # axsemantics-js
-## a light wrapper around the ax apis.
+## A light wrapper around the AX APIs.
 
 # Install
 ```
@@ -14,6 +14,7 @@ No docs yet! Ask, and ye shall receive.
 ```
 npm install
 # Make changes and commit
+npm run lint
 npm version [minor, patch]
 npm run build
 git push
