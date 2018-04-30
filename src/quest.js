@@ -1,7 +1,5 @@
 /* eslint camelcase: "off" */
 /* global URLSearchParams */
-import {cleanQuery} from './utils'
-
 const Quest = function (fetch) {
 	const api = {
 		quests: {
