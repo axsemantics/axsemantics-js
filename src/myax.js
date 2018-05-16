@@ -117,9 +117,13 @@ const MyAx = function (fetch, baseUrl, token) {
 			}
 		},
 		histograms: {
-			list (collectionId) {
-				const query = {
+			// filters = {latest: Boolean}
+			list (collectionId, filters = {}) {
+				let query = {
 					collection: collectionId
+				}
+				if (filters && filters.latest) {
+					query.latest = true
 				}
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/histograms/?${qs}`)
