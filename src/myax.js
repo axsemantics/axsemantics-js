@@ -36,7 +36,6 @@ const MyAx = function (fetch, baseUrl, token) {
 					fields: fieldsFromOptions(options),
 					is_instant: false
 				}
-				console.log(query)
 				const qs = new URLSearchParams(cleanNullsorUndefined(query)).toString()
 				return api.fetch(`v2/collections/?${qs}`)
 			},
