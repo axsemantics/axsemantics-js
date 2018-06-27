@@ -27,6 +27,9 @@ const IDM = function (fetch) {
 			cancelInvite (group, email) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'DELETE')
 			},
+			removeMember (group, email) {
+				return api.fetch(`groups/${group}/member/${email}/`, 'DELETE')
+			},
 			appointRole (group, role, email) {
 				return api.fetch(`groups/${group}/${role}/${email}/`, 'PUT')
 			},
