@@ -393,6 +393,21 @@ const Training = function (fetch, baseUrl, token) {
 				})
 				return api.fetch(`vocabularies/${id}/`, 'PATCH', patchset)
 			}
+		},
+		import: {
+			import (trainingId, atml) {
+				return api.fetch(`trainings/${trainingId}/import/`, 'PUT', {
+					atml
+				})
+			},
+			migrate (oldTrainingId, newTrainingId) {
+				return api.fetch(`trainings/${newTrainingId}/migrate-from-rincewind/`, 'POST', {
+					rincewind_training_id: oldTrainingId
+				})
+			},
+			status (trainingId) {
+				return api.fetch(`trainings/${trainingId}/import/?latest=1`)
+			}
 		}
 	}
 
