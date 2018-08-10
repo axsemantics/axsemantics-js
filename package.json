@@ -10,7 +10,8 @@
     "build:es": "rollup -c rollup.config.es.js",
     "build:iife": "rollup -c rollup.config.iife.js",
     "build": "npm run build:cjs && npm run build:es && npm run build:iife",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
