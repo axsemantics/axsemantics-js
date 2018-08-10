@@ -55,7 +55,8 @@ class AxSemanticsClient extends EventEmitter {
 		const options = {
 			method: method || 'GET',
 			headers,
-			body: body instanceof FormData ? body : JSON.stringify(body)
+			body: body instanceof FormData ? body : JSON.stringify(body),
+			credentials: 'omit' // api wants no cookies
 		}
 		return fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
 			if (response.status === 204) // no content to parse
