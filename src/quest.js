@@ -29,6 +29,23 @@ const Quest = function (fetch) {
 				const qs = new URLSearchParams({email}).toString()
 				return api.fetch(`v1/users/?${qs}`)
 			},
+		},
+		lessons: {
+			list () {
+				return api.fetch(`v1/lessons/`)
+			},
+			get (id) {
+				return api.fetch(`v1/lessons/${id}/`)
+			},
+			create (lesson) {
+				return api.fetch(`v1/lessons/`, 'POST', lesson)
+			},
+			addStep (id, stepName) {
+				return api.fetch(`v1/lessons/${id}/steps/`, 'POST', {step: stepName})
+			},
+			finish (id) {
+				return api.fetch(`v1/lessons/${id}/finish/`, 'POST')
+			}
 		}
 	}
 	api.fetch = fetch
