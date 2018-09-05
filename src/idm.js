@@ -4,8 +4,8 @@
 const IDM = function (fetch) {
 	const api = {
 		billing: {
-			getAddress (group) {
-				return api.fetch(`groups/${group}/billing-address/`)
+			getBillingInfo (group) {
+				return api.fetch(`groups/${group}/billing-info/`)
 			},
 			updateAddress (group, billing_address) {
 				return api.fetch(`groups/${group}/billing-address/`, 'PUT', {billing_address})
