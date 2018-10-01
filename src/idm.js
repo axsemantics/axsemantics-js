@@ -8,7 +8,7 @@ const IDM = function (fetch) {
 				return api.fetch(`groups/${group}/billing-info/`)
 			},
 			updateAddress (group, billing_address) {
-				return api.fetch(`groups/${group}/billing-address/`, 'PUT', {billing_address})
+				return api.fetch(`groups/${group}/billing-address/`, 'PUT', billing_address)
 			},
 			createContact (group, data) {
 				return api.fetch(`groups/${group}/contact/`, 'POST', data)
