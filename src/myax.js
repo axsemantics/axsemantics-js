@@ -47,7 +47,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/collections/${id}/?${qs}`)
 			},
 			getProcessingStates (collectionId) {
-				return api.fetch(`v2/collections/${collectionId}/document_processing_states`)
+				return api.fetch(`v2/collections/${collectionId}/document-processing-states`)
 			},
 			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
 			create (collection) {
