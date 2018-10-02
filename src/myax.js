@@ -46,6 +46,9 @@ const MyAx = function (fetch, baseUrl, token) {
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/collections/${id}/?${qs}`)
 			},
+			getProcessingStates (collectionId) {
+				return api.fetch(`v2/collections/${collectionId}/document_processing_states`)
+			},
 			// collection = { language, training_id, name, licence_holder, training_tag: 'draft' }
 			create (collection) {
 				return api.fetch(`v2/collections/`, 'POST', collection)
