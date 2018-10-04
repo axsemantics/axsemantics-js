@@ -151,11 +151,6 @@ const MyAx = function (fetch, baseUrl, token) {
 			get (id) {
 				return api.fetch(`v2/story-exports/${id}/`)
 			},
-		},
-		contentProjects: {
-			list (training_id) {
-				return api.fetch(`v1/content-project/?training_id=${training_id}`)
-			},
 		}
 	}
 
