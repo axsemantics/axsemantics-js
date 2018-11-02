@@ -103,6 +103,11 @@ const MyAx = function (fetch, baseUrl, token) {
 			create (collectionId, blob) {
 				return api.fetch(`v2/collections/${collectionId}/document/`, 'POST', blob)
 			},
+			// blob has to contain 'name'
+			updateOrCreateByUid (collectionId, blob, uid) {
+				const payload = Object.assign({uid}, blob)
+				return api.fetch(`v2/collections/${collectionId}/update-or-create-by-uid/?uid=${uid}`, 'POST', payload)
+			},
 			// options = {fields}
 			get (id, options = {}) {
 				const query = {
