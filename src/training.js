@@ -305,6 +305,9 @@ const Training = function (fetch, baseUrl, token) {
 					aso_mode: 'json'
 				})
 			},
+			publish (training) {
+				return api.fetch(`trainings/${training.id}/publish/`, 'POST')
+			},
 			generateProperty (training, dataKeyName, dataType, languages) {
 				const _languages = languages || ['*']
 				const _dataType = dataType || 'string'
