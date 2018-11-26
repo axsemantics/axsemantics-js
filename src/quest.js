@@ -40,6 +40,10 @@ const Quest = function (fetch) {
 			create (lesson) {
 				return api.fetch(`v1/lessons/`, 'POST', lesson)
 			},
+			// can only update linked_project and last_valid_route
+			update (id, update) {
+				return api.fetch(`v1/lessons/${id}/`, 'PATCH', update)
+			},
 			addStep (id, stepName) {
 				return api.fetch(`v1/lessons/${id}/steps/`, 'POST', {step: stepName})
 			},
