@@ -281,10 +281,11 @@ const Training = function (fetch, baseUrl, token) {
 			properties (id) {
 				return api.fetch(`properties/?training=${id}`)
 			},
-			create (name, license_holder) {
+			create (name, license_holder, more) {
 				return api.fetch(`trainings/`, 'POST', {
 					name,
-					license_holder
+					license_holder,
+					...more
 				})
 			},
 			update (id, patchset) {
