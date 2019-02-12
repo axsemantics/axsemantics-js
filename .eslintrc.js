@@ -23,7 +23,8 @@ module.exports = {
 		'no-tabs': 0,
 		'comma-dangle': 0, //perhaps always?
 		'curly': 0,
-		'no-return-assign': 0
+		'no-return-assign': 0,
+		'object-curly-spacing': 0
 	},
 	globals: {
 		localStorage: false
