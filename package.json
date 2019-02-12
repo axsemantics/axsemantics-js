@@ -26,24 +26,24 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-transform-runtime": "^6.7.5",
-    "eslint": "^3.9.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-friendly-formatter": "^2.0.6",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^2.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-html": "^5.0.3",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^4.2.3",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.0",
-    "rollup": "^0.67.3",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-inject": "^2.2.0",
     "rollup-plugin-node-builtins": "^2.0.0"
   },
   "dependencies": {
     "form-data": "^2.3.2",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^2.3.0"
   }
 }
