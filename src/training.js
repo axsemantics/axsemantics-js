@@ -404,9 +404,10 @@ const Training = function (fetch, baseUrl, token) {
 					atml
 				})
 			},
-			migrate (oldTrainingId, newTrainingId) {
+			migrate (oldTrainingId, newTrainingId, copyCollections) {
 				return api.fetch(`trainings/${newTrainingId}/migrate-from-rincewind/`, 'POST', {
-					rincewind_training_id: oldTrainingId
+					rincewind_training_id: oldTrainingId,
+					copy_collections: copyCollections
 				})
 			},
 			status (trainingId) {
