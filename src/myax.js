@@ -78,7 +78,7 @@ const MyAx = function (fetch, baseUrl, token) {
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/collections/${id}/generate-content/?${qs}`, 'POST')
 			},
-			clear (id) {
+			empty (id) {
 				return api.fetch(`v2/collections/${id}/empty/`, 'POST')
 			}
 		},
