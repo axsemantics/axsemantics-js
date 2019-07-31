@@ -36,6 +36,12 @@ const IDM = function (fetch) {
 			chargeBeePortal (group) {
 				return api.fetch(`groups/${group}/portal/`, 'POST')
 			},
+			checkout (group, payload) {
+				return api.fetch(`groups/${group}/checkout/`, 'POST', payload)
+			},
+			estimateCheckout (payload) {
+				return api.fetch(`groups/checkout-estimate/`, 'POST', payload)
+			},
 			invite (group, email, name) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT', {name})
 			},
