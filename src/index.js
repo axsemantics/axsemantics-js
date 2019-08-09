@@ -66,6 +66,8 @@ class AxSemanticsClient extends EventEmitter {
 					// TODO change to error
 					return Promise.reject({response, json}) // eslint-disable-line
 				return Promise.resolve(json)
+			}).catch(() => { // no json
+				return Promise.reject({response}) // eslint-disable-line
 			})
 		}).catch((error) => {
 			return Promise.reject(error)
