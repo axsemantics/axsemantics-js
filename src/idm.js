@@ -42,6 +42,9 @@ const IDM = function (fetch) {
 			estimateCheckout (payload) {
 				return api.fetch(`groups/checkout-estimate/`, 'POST', payload)
 			},
+			prepareCheckout (payload) {
+				return api.fetch(`groups/checkout-prepare/`, 'POST', payload)
+			},
 			invite (group, email, name) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT', {name})
 			},
