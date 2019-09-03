@@ -82,11 +82,6 @@ const MyAx = function (fetch, baseUrl, token) {
 				return api.fetch(`v2/collections/${id}/empty/`, 'POST')
 			}
 		},
-		me: {
-			get () {
-				return api.fetch(`v1/me/`)
-			}
-		},
 		// https://github.com/aexeagmbh/myax/blob/master/myax/document/processing_states.py
 		// optional search and processingState ['none', 'requested', 'generated', 'delivered', 'failed']
 		documents: {
