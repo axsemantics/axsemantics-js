@@ -8,10 +8,18 @@ const Report = function (fetch) {
 			list (licenseGroup, filters = {}, options = {}) {
 				const query = Object.assign({}, filters, {
 					license_group: licenseGroup,
-					scope: filters.collection_id ? 'collection' : 'all',
 					page: options.page,
-					page_size: options.pageSize
+					page_size: options.pageSize,
+					collection: undefined,
+					project: undefined
 				})
+				if (filters.collection) {
+					query.scope = 'collection'
+					query.subject = filters.collection
+				} else if (filters.project) {
+					query.scope = 'project'
+					query.subject = filters.project
+				}
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v3/reports/?${qs}`)
 			},
