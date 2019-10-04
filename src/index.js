@@ -35,8 +35,8 @@ class AxSemanticsClient extends EventEmitter {
 			this._editor = Training(config.fetch.bind(this, config.trainingBaseUrl))
 			this._lexicon = Lexicon(config.fetch.bind(this, config.lexiconBaseUrl))
 			this._bulkUpload = BulkUpload(config.fetch.bind(this, config.bulkUploadBaseUrl), this.idToken)
-			this._quest = Quest(config.fetch.bind(this, config.questBaseUrl), this.idToken)
-			this._report = Report(config.fetch.bind(this, config.reportBaseUrl))
+			this._quest = Quest(config.fetch.bind(this, config.questBaseUrl))
+			this._report = Report(config.fetch.bind(this, config.reportBaseUrl), this.idToken)
 		}
 		if (config.refreshToken) {
 			this._idm.tokenExchange(config.refreshToken).then((tokenExchange) => {

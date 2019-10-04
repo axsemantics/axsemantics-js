@@ -2,7 +2,7 @@ import { cleanQuery } from './utils'
 
 /* eslint camelcase: "off" */
 /* global URLSearchParams */
-const Report = function (fetch) {
+const Report = function (fetch, idToken) {
 	const api = {
 		reports: {
 			list (licenseGroup, filters = {}, options = {}) {
@@ -28,7 +28,15 @@ const Report = function (fetch) {
 			},
 		},
 	}
-	api.fetch = fetch
+
+	api.fetch = function (url, method) {
+		// *allow* caching
+		const headers = {
+			'Authorization': `JWT ${idToken}`,
+			'Content-Type': 'application/json'
+		}
+		return fetch(url, method, undefined, headers)
+	}
 	return api
 }
 
