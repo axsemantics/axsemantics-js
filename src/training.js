@@ -407,7 +407,8 @@ const Training = function (fetch, baseUrl, token) {
 			migrate (oldTrainingId, newTrainingId, options) {
 				return api.fetch(`trainings/${newTrainingId}/migrate-from-rincewind/`, 'POST', {
 					rincewind_training_id: oldTrainingId,
-					copy_collections: options && options.copyCollections
+					copy_collections: options && options.copyCollections,
+					parametrize_expressions: options && options.parametrizeExpressions
 				})
 			},
 			status (trainingId) {
