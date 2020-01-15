@@ -10,7 +10,8 @@
     "build:cjs": "rollup -c rollup.config.cjs.js",
     "build:es": "rollup -c rollup.config.es.js",
     "build:iife": "rollup -c rollup.config.iife.js",
-    "build": "npm run build:cjs && npm run build:es && npm run build:iife",
+    "build:browser": "rollup -c rollup.config.browser.js",
+    "build": "npm run build:cjs && npm run build:es && npm run build:iife && npm run build:browser",
     "lint": "eslint --ext .js src",
     "prepublishOnly": "npm run build"
   },
