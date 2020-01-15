@@ -42,6 +42,8 @@ class AxSemanticsClient extends EventEmitter {
 			this._idm.tokenExchange(config.refreshToken).then((tokenExchange) => {
 				initApis(tokenExchange.id_token)
 				this.emit('ready')
+			}).catch(error => {
+				this.emit('error', error)
 			})
 		} else {
 			initApis(config.idToken)
