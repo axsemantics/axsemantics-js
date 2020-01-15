@@ -5,6 +5,7 @@
   "main": "dist/axsemantics.js",
   "jsnext:main": "dist/axsemantics.es.js",
   "module": "dist/axsemantics.es.js",
+  "browser": "dist/axsemantics.browser.js",
   "scripts": {
     "build:cjs": "rollup -c rollup.config.cjs.js",
     "build:es": "rollup -c rollup.config.es.js",
