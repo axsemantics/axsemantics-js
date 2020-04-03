@@ -154,6 +154,44 @@ const MyAx = function (fetch, baseUrl, token) {
 			get (id) {
 				return api.fetch(`v2/story-exports/${id}/`)
 			},
+		},
+		limits: {
+			projects: {
+				list (query = {}) {
+					const qs = new URLSearchParams(cleanQuery(query)).toString()
+					return api.fetch(`v3/limits/projects/?${qs}`)
+				},
+				activate (id) {
+					return api.fetch(`v3/limits/projects/${id}/activate/`, 'POST')
+				},
+				deactivate (id) {
+					return api.fetch(`v3/limits/projects/${id}/deactivate/`, 'POST')
+				}
+			},
+			languages: {
+				list (query = {}) {
+					const qs = new URLSearchParams(cleanQuery(query)).toString()
+					return api.fetch(`v3/limits/languages/?${qs}`)
+				},
+				activate (id) {
+					return api.fetch(`v3/limits/languages/${id}/activate/`, 'POST')
+				},
+				deactivate (id) {
+					return api.fetch(`v3/limits/languages/${id}/deactivate/`, 'POST')
+				}
+			},
+			documents: {
+				list (query = {}) {
+					const qs = new URLSearchParams(cleanQuery(query)).toString()
+					return api.fetch(`v3/limits/documents/?${qs}`)
+				},
+				activate (id) {
+					return api.fetch(`v3/limits/documents/${id}/activate/`, 'POST')
+				},
+				deactivate (id) {
+					return api.fetch(`v3/limits/documents/${id}/deactivate/`, 'POST')
+				}
+			}
 		}
 	}
 
