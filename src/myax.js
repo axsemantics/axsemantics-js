@@ -122,25 +122,41 @@ const MyAx = function (fetch, baseUrl, token) {
 			}
 		},
 		histograms: {
-			// filters = {latest: Boolean}
-			list (collectionId, filters = {}) {
-				let query = {
-					collection: collectionId
+			list (collectionOrProjectId, filters = {pageSize: 100}) {
+				let query = {}
+				if (typeof collectionOrProjectId === 'number' || /^[0-9]+$/.test(collectionOrProjectId)) {
+					query.collection = collectionOrProjectId
+				} else if (collectionOrProjectId) {
+					query.project = collectionOrProjectId
 				}
-				if (filters && filters.latest) {
-					query.latest = true
-				}
+				if (filters && filters.latest) query.latest = true
+				if (filters && filters.pageSize) query.page_size = filters.pageSize
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
 				return api.fetch(`v2/histograms/?${qs}`)
 			},
-			create (collectionId) {
-				const data = {
-					collection: collectionId
+			create (collectionIdOrData) {
+				let data
+				if (typeof collectionIdOrData === 'object') {
+					data = collectionIdOrData
+				} else {
+					data = {collection: collectionIdOrData}
 				}
 				return api.fetch(`v2/histograms/`, 'POST', data)
 			},
+			delete (id) {
+				return api.fetch(`v2/histograms/${id}/`, 'DELETE')
+			},
 			get (id) {
 				return api.fetch(`v2/histograms/${id}/`)
+			},
+			update (id, update) {
+				return api.fetch(`v2/histograms/${id}/`, 'PATCH', update)
+			},
+			regenerate (id) {
+				return api.fetch(`v2/histograms/${id}/regenerate/`, 'POST')
+			},
+			findDocuments (id, path, value) {
+				return api.fetch(`v2/histograms/${id}/find_documents/`, 'POST', {path, value})
 			}
 		},
 		exports: {
