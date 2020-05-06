@@ -190,6 +190,9 @@ const MyAx = function (fetch, baseUrl, token) {
 				},
 				deactivate (id) {
 					return api.fetch(`v3/limits/documents/${id}/deactivate/`, 'POST')
+				},
+				deactivateCollection (id) {
+					return api.fetch(`v3/limits/documents/deactivate-collection/${id}/`, 'POST')
 				}
 			}
 		}
