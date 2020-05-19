@@ -1,15 +1,11 @@
 /* eslint camelcase: "off" */
 /* global URLSearchParams */
 
+// TODO clean up old billing endpoints
+
 const IDM = function (fetch) {
 	const api = {
 		billing: {
-			getBillingInfo (group) {
-				return api.fetch(`groups/${group}/billing-info/`)
-			},
-			updateAddress (group, billing_address) {
-				return api.fetch(`groups/${group}/billing-address/`, 'PUT', billing_address)
-			},
 			createContact (group, data) {
 				return api.fetch(`groups/${group}/contact/`, 'POST', data)
 			},
@@ -27,6 +23,7 @@ const IDM = function (fetch) {
 			}
 		},
 		groups: {
+			// TODO order
 			list () {
 				return api.fetch(`groups/`)
 			},
@@ -62,7 +59,25 @@ const IDM = function (fetch) {
 			},
 			purchaseSeat (group, pay_extra_money) {
 				return api.fetch(`groups/${group}/purchase-seat/`, 'POST', {pay_extra_money})
-			}
+			},
+			updatePrimaryPaymentMethod (group, payload) {
+				return api.fetch(`groups/${group}/update-primary-payment-method/`, 'POST', payload)
+			},
+			scheduleLicenseChanges (group, plan) {
+				return api.fetch(`groups/${group}/schedule-license-changes/`, 'POST', {plan})
+			},
+			cancelScheduledLicenseChanges (group) {
+				return api.fetch(`groups/${group}/cancel-scheduled-license-changes/`, 'POST')
+			},
+			cancelLicense (group) {
+				return api.fetch(`groups/${group}/cancel-license/`, 'POST')
+			},
+			getBillingInfo (group) {
+				return api.fetch(`groups/${group}/billing-info/`)
+			},
+			updateBillingAddress (group, billing_address) {
+				return api.fetch(`groups/${group}/billing-address/`, 'PUT', billing_address)
+			},
 		},
 		users: {
 			getMe () {
