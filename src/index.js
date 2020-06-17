@@ -64,8 +64,8 @@ class AxSemanticsClient extends EventEmitter {
 			credentials: 'omit' // api wants no cookies
 		}
 		return fetch(url.startsWith('http') ? url : baseUrl + url, options).then((response) => {
-			if (response.status === 202 || response.status === 204) // no content to parse
-				return Promise.resolve()
+			if (response.status === 204 || (response.ok && response.headers.get('Content-Type') !== 'application/json'))
+				return Promise.resolve() // no content to parse
 			return response.json().then((json) => {
 				if (!response.ok)
 					// TODO change to error
