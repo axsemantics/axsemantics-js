@@ -12,3 +12,5 @@ dist
 config.dev.js
 .publish
 .idea
+
+.envrc
