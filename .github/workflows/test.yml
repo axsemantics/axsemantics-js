@@ -1,7 +1,7 @@
 ---
 name: Run tests on Github
 # yamllint disable rule:truthy
-on: [push, workflow-dispatch]
+on: [push]
 # yamllint enable
 
 jobs:
