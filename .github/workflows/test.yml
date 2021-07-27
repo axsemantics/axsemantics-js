@@ -8,6 +8,7 @@ jobs:
   build-and-lint:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -16,3 +17,10 @@ jobs:
       - run: npm install
       - run: npm run build -s
       - run: npm run lint -s
+
+      - uses: aexeagmbh/gh-actions-ntfy-slack@main
+        with:
+          job-status: ${{ job.status }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: always()
