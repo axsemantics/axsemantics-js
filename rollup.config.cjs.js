@@ -1,14 +1,17 @@
-import babel from 'rollup-plugin-babel'
-import inject from 'rollup-plugin-inject'
+import babel from '@rollup/plugin-babel'
+import inject from '@rollup/plugin-inject'
 
 export default {
 	input: 'src/index.js',
 	output: {
 		format: 'cjs',
-		file: 'dist/axsemantics.js'
+		file: 'dist/axsemantics.js',
+		exports: 'default'
 	},
 	plugins: [
-		babel(),
+		babel({
+			babelHelpers: 'bundled'
+		}),
 		inject({
 			include: 'src/*.js',
 			fetch: 'node-fetch',
