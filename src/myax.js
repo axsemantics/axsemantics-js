@@ -123,7 +123,7 @@ const MyAx = function (fetch, baseUrl, token) {
 		},
 		histograms: {
 			list (collectionOrProjectId, filters = {pageSize: 100}) {
-				let query = {}
+				const query = {}
 				if (typeof collectionOrProjectId === 'number' || /^[0-9]+$/.test(collectionOrProjectId)) {
 					query.collection = collectionOrProjectId
 				} else if (collectionOrProjectId) {
