@@ -7,8 +7,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			list (trainings, options = {}) {
 				const query = {
 					trainings,
-					page: options.page,
+					page_size: options.page_size || options.pageSize,
 					language: options.language,
+					search: options.search,
 					o: options.modified
 				}
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
@@ -60,8 +61,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			list (trainings, options = {}) {
 				const query = {
 					trainings,
-					page: options.page,
+					page_size: options.page_size || options.pageSize,
 					language: options.language,
+					search: options.search,
 					o: options.modified
 				}
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
@@ -113,8 +115,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			list (trainings, options = {}) {
 				const query = {
 					trainings,
-					page: options.page,
+					page_size: options.page_size || options.pageSize,
 					language: options.language,
+					search: options.search,
 					o: options.modified
 				}
 				const qs = new URLSearchParams(cleanQuery(query)).toString()
