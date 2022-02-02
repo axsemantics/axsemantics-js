@@ -54,7 +54,7 @@ class AxSemanticsClient extends EventEmitter {
 	static fetch (baseUrl, url, method, body, userHeaders) {
 		const headers = userHeaders || {
 			'Content-Type': 'application/json',
-			'authorization': `JWT ${this.idToken}`,
+			authorization: `JWT ${this.idToken}`,
 			'Cache-Control': 'no-cache'
 		}
 		const options = {

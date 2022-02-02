@@ -37,8 +37,8 @@ const BulkUpload = function (fetch, idToken) {
 
 	api.fetch = function (url, method, body) {
 		const headers = {
-			'authorization': `JWT ${idToken}`,
-			'Accept': 'application/json'
+			authorization: `JWT ${idToken}`,
+			Accept: 'application/json'
 		}
 		if (!(body instanceof FormData)) {
 			headers['Content-Type'] = 'application/json'

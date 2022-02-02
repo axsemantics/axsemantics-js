@@ -32,7 +32,7 @@ const Report = function (fetch, idToken) {
 	api.fetch = function (url, method) {
 		// *allow* caching
 		const headers = {
-			'Authorization': `JWT ${idToken}`,
+			Authorization: `JWT ${idToken}`,
 			'Content-Type': 'application/json'
 		}
 		return fetch(url, method, undefined, headers)
