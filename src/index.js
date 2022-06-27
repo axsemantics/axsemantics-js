@@ -17,7 +17,7 @@ class AxSemanticsClient extends EventEmitter {
 		super()
 		const config = {
 			myAxBaseUrl: 'https://api.ax-semantics.com/',
-			trainingBaseUrl: 'https://training-api.ax-semantics.com/v1/',
+			trainingBaseUrl: 'https://training-api.ax-semantics.com/',
 			lexiconBaseUrl: 'https://lexicon.ax-semantics.com/v1/',
 			idmBaseUrl: 'https://idm.ax-semantics.com/v1/',
 			bulkUploadBaseUrl: 'https://bulk-api.ax-semantics.com/v1/',
