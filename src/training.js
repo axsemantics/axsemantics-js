@@ -53,6 +53,32 @@ const Training = function (fetch, baseUrl, token) {
 				})
 			},
 		},
+		translationItems: {
+			list (translationPackageId) {
+				console.log(translationPackageId)
+				return api.fetch(`v3/translation-packages/${translationPackageId}/translation-items/`)
+			},
+			create ({ translationPackageId, translationItem }) {
+				return api.fetch(
+					`v3/translation-packages/${translationPackageId}/translation-items/`,
+					'POST',
+					translationItem
+				)
+			},
+			delete ({ translationPackageId, objectType, objectId }) {
+				return api.fetch(
+					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}`,
+					'DELETE'
+				)
+			},
+			update ({ translationPackageId, objectType, objectId, objectStatus }) {
+				return api.fetch(
+					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}`,
+					'PATCH',
+					{ object_status: objectStatus }
+				)
+			},
+		},
 		trainings: {
 			list (fields = 'id,name') {
 				return api.fetch(`v1/trainings/?fields=${fields}`)
