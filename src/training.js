@@ -67,15 +67,15 @@ const Training = function (fetch, baseUrl, token) {
 			},
 			delete ({ translationPackageId, objectType, objectId }) {
 				return api.fetch(
-					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}`,
+					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}/`,
 					'DELETE'
 				)
 			},
 			update ({ translationPackageId, objectType, objectId, objectStatus }) {
 				return api.fetch(
-					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}`,
+					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}/`,
 					'PATCH',
-					{ object_status: objectStatus }
+					{ state: objectStatus }
 				)
 			},
 		},
