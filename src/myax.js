@@ -200,6 +200,10 @@ const MyAx = function (fetch, baseUrl, token) {
 				list (query = {}) {
 					const qs = new URLSearchParams(cleanQuery(query)).toString()
 					return api.fetch(`v3/limits/documents/?${qs}`)
+				},
+				statistics (query = {}) {
+					const qs = new URLSearchParams(cleanQuery(query)).toString()
+					return api.myax.fetch(`v3/limits/documents/statistics/?${qs}`)
 				}
 			}
 		}
