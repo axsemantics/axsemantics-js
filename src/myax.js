@@ -200,15 +200,6 @@ const MyAx = function (fetch, baseUrl, token) {
 				list (query = {}) {
 					const qs = new URLSearchParams(cleanQuery(query)).toString()
 					return api.fetch(`v3/limits/documents/?${qs}`)
-				},
-				activate (id) {
-					return api.fetch(`v3/limits/documents/${id}/activate/`, 'POST')
-				},
-				deactivate (id) {
-					return api.fetch(`v3/limits/documents/${id}/deactivate/`, 'POST')
-				},
-				deactivateCollection (id) {
-					return api.fetch(`v3/limits/documents/deactivate-collection/${id}/`, 'POST')
 				}
 			}
 		}
