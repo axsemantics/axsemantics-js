@@ -55,7 +55,6 @@ const Training = function (fetch, baseUrl, token) {
 		},
 		translationItems: {
 			list (translationPackageId) {
-				console.log(translationPackageId)
 				return api.fetch(`v3/translation-packages/${translationPackageId}/translation-items/`)
 			},
 			create ({ translationPackageId, translationItem }) {
@@ -71,11 +70,11 @@ const Training = function (fetch, baseUrl, token) {
 					'DELETE'
 				)
 			},
-			update ({ translationPackageId, objectType, objectId, objectStatus }) {
+			update ({ translationPackageId, objectType, objectId, state }) {
 				return api.fetch(
 					`v3/translation-packages/${translationPackageId}/translation-items/${objectType}-${objectId}/`,
 					'PATCH',
-					{ state: objectStatus }
+					{ state }
 				)
 			},
 		},
