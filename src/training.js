@@ -78,6 +78,17 @@ const Training = function (fetch, baseUrl, token) {
 				)
 			},
 		},
+		notifications: {
+			list () {
+				return api.fetch(`v3/notifications/`)
+			},
+			get (id) {
+				return api.fetch(`v3/notifications/${id}/`)
+			},
+			update (id, patchset) {
+				return api.fetch(`v3/notifications/${id}/`, 'PATCH', patchset)
+			}
+		},
 		trainings: {
 			list (fields = 'id,name') {
 				return api.fetch(`v1/trainings/?fields=${fields}`)
