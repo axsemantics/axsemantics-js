@@ -44,13 +44,8 @@ const Training = function (fetch, baseUrl, token) {
 			delete (id) {
 				return api.fetch(`v3/translation-packages/${id}/`, 'DELETE')
 			},
-			update (translationPackage) {
-				const {id, state, assignees, translation_items} = translationPackage
-				return api.fetch(`v3/translation-packages/${id}/`, 'PATCH', {
-					state,
-					assignees,
-					translation_items
-				})
+			update (translationPackageId, update) {
+				return api.fetch(`v3/translation-packages/${translationPackageId}/`, 'PATCH', update)
 			},
 		},
 		translationItems: {
