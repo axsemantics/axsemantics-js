@@ -32,6 +32,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			update (lexiconEntry) {
 				return api.fetch(`nouns/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
+			},
+			lookupLemma (trainingId, language, lemma) {
+				return api.fetch(`nouns/lemma-lookup/${trainingId}/${language}/${lemma}/`)
 			}
 		},
 		missingNouns: {
@@ -86,6 +89,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			update (lexiconEntry) {
 				return api.fetch(`verbs/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
+			},
+			lookupLemma (trainingId, language, lemma) {
+				return api.fetch(`verbs/lemma-lookup/${trainingId}/${language}/${lemma}/`)
 			}
 		},
 		missingVerbs: {
@@ -140,6 +146,9 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			update (lexiconEntry) {
 				return api.fetch(`adjectives/${lexiconEntry.id}/`, 'PATCH', lexiconEntry)
+			},
+			lookupLemma (trainingId, language, lemma) {
+				return api.fetch(`adjectives/lemma-lookup/${trainingId}/${language}/${lemma}/`)
 			}
 		},
 		missingAdjectives: {
