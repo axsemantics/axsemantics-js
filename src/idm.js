@@ -42,8 +42,8 @@ const IDM = function (fetch) {
 			prepareCheckout (payload) {
 				return api.fetch(`groups/checkout-prepare/`, 'POST', payload)
 			},
-			invite (group, email, name) {
-				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT', {name})
+			invite (group, email, name, role) {
+				return api.fetch(`groups/${group}/invitation/${email}/`, 'PUT', {name, role})
 			},
 			cancelInvite (group, email) {
 				return api.fetch(`groups/${group}/invitation/${email}/`, 'DELETE')
