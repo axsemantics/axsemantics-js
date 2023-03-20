@@ -51,6 +51,9 @@ const IDM = function (fetch) {
 			removeMember (group, email) {
 				return api.fetch(`groups/${group}/member/${email}/`, 'DELETE')
 			},
+			changeRole (group, email, role) {
+				return api.fetch(`groups/${group}/role/${email}/`, 'POST', {role})
+			},
 			appointRole (group, role, email) {
 				return api.fetch(`groups/${group}/${role}/${email}/`, 'PUT')
 			},
