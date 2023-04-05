@@ -82,6 +82,12 @@ const Training = function (fetch, baseUrl, token) {
 			},
 			update (id, patchset) {
 				return api.fetch(`v3/notifications/${id}/`, 'PATCH', patchset)
+			},
+			getUnreadCount () {
+				return api.fetch('v3/notifications/unread-count/')
+			},
+			markAllAsRead () {
+				return api.fetch('v3/notifications/mark-all-as-read/', 'POST')
 			}
 		},
 		trainings: {
