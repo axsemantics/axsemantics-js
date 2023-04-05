@@ -54,12 +54,6 @@ const IDM = function (fetch) {
 			changeRole (group, email, role) {
 				return api.fetch(`groups/${group}/role/${email}/`, 'POST', {role})
 			},
-			appointRole (group, role, email) {
-				return api.fetch(`groups/${group}/${role}/${email}/`, 'PUT')
-			},
-			revokeRole (group, role, email) {
-				return api.fetch(`groups/${group}/${role}/${email}/`, 'DELETE')
-			},
 			updatePrimaryPaymentMethod (group, payload) {
 				return api.fetch(`groups/${group}/update-primary-payment-method/`, 'POST', payload)
 			},
