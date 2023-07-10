@@ -47,6 +47,9 @@ const Training = function (fetch, baseUrl, token) {
 			update (translationPackageId, update) {
 				return api.fetch(`v3/translation-packages/${translationPackageId}/`, 'PATCH', update)
 			},
+			simulate (packageOptions) {
+				return api.fetch('v3/translation-packages/simulate/', 'POST', packageOptions)
+			},
 		},
 		translationItems: {
 			list (translationPackageId) {
