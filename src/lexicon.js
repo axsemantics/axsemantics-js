@@ -21,12 +21,6 @@ const lexicon = function (fetch, baseUrl, token) {
 			delete (id) {
 				return api.fetch(`nouns/${id}/`, 'DELETE')
 			},
-			addTraining (id, trainingId) {
-				return api.fetch(`nouns/${id}/add-training/`, 'POST', {training: trainingId})
-			},
-			removeTraining (id, trainingId) {
-				return api.fetch(`nouns/${id}/remove-training/`, 'POST', {training: trainingId})
-			},
 			get (id) {
 				return api.fetch(`nouns/${id}/`)
 			},
@@ -35,29 +29,6 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			lookupLemma (trainingId, language, lemma) {
 				return api.fetch(`nouns/lemma-lookup/${trainingId}/${language}/${lemma}/`)
-			}
-		},
-		missingNouns: {
-			list (training, options = {}) {
-				const query = {
-					training,
-					page: options.page,
-					ignored: options.ignored,
-					language: options.language,
-					search: options.search,
-					o: options.modified
-				}
-				const qs = new URLSearchParams(cleanQuery(query)).toString()
-				return api.fetch(`missing-nouns/?${qs}`)
-			},
-			get (id) {
-				return api.fetch(`missing-nouns/${id}/`)
-			},
-			ignore (id) {
-				return api.fetch(`missing-nouns/${id}/ignore/`, 'PUT')
-			},
-			undoIgnore (id) {
-				return api.fetch(`missing-nouns/${id}/ignore/`, 'DELETE')
 			}
 		},
 		verbs: {
@@ -94,29 +65,6 @@ const lexicon = function (fetch, baseUrl, token) {
 				return api.fetch(`verbs/lemma-lookup/${trainingId}/${language}/${lemma}/`)
 			}
 		},
-		missingVerbs: {
-			list (training, options = {}) {
-				const query = {
-					training,
-					page: options.page,
-					ignored: options.ignored,
-					language: options.language,
-					search: options.search,
-					o: options.modified
-				}
-				const qs = new URLSearchParams(cleanQuery(query)).toString()
-				return api.fetch(`missing-verbs/?${qs}`)
-			},
-			get (id) {
-				return api.fetch(`missing-verbs/${id}/`)
-			},
-			ignore (id) {
-				return api.fetch(`missing-verbs/${id}/ignore/`, 'PUT')
-			},
-			undoIgnore (id) {
-				return api.fetch(`missing-verbs/${id}/ignore/`, 'DELETE')
-			}
-		},
 		adjectives: {
 			list (trainings, options = {}) {
 				const query = {
@@ -149,29 +97,6 @@ const lexicon = function (fetch, baseUrl, token) {
 			},
 			lookupLemma (trainingId, language, lemma) {
 				return api.fetch(`adjectives/lemma-lookup/${trainingId}/${language}/${lemma}/`)
-			}
-		},
-		missingAdjectives: {
-			list (training, options = {}) {
-				const query = {
-					training,
-					page: options.page,
-					ignored: options.ignored,
-					language: options.language,
-					search: options.search,
-					o: options.modified
-				}
-				const qs = new URLSearchParams(cleanQuery(query)).toString()
-				return api.fetch(`missing-adjectives/?${qs}`)
-			},
-			get (id) {
-				return api.fetch(`missing-adjectives/${id}/`)
-			},
-			ignore (id) {
-				return api.fetch(`missing-adjectives/${id}/ignore/`, 'PUT')
-			},
-			undoIgnore (id) {
-				return api.fetch(`missing-adjectives/${id}/ignore/`, 'DELETE')
 			}
 		},
 		languageDefinitions: {
